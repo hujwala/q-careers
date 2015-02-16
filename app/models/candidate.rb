@@ -15,7 +15,7 @@ class Candidate < ActiveRecord::Base
 
   validate_string :name, mandatory: true
   validate_email :email
-  validate_string :phone, mandatory: true, min_length: 8, max_length: 16, format: /\A\(([0-9\(\)\/\+ \-]){3}\) ([0-9\(\)\/\+ \-]){3}-([0-9\(\)\/\+ \-]){4}\z/i
+  validate_string :phone, mandatory: true, min_length: 8, max_length: 16, format: /.*/i
   validate_string :current_city, mandatory: true, max_length: 128
   validate_string :current_state, mandatory: true, max_length: 128
   validate_string :current_country, mandatory: true, max_length: 128
@@ -32,6 +32,6 @@ class Candidate < ActiveRecord::Base
   validates :resume, presence: true
 
   # File Uploader Method Hook
-  mount_uploader :resume, AttachmentUploader
+  mount_uploader :resume, ResumeUploader
 
 end

@@ -14,7 +14,7 @@ FactoryGirl.define do
     year_of_passing 2014
     experience_in_years 10
     skills "JAVA"
-    resume { Rack::Test::UploadedFile.new('test/fixtures/test.jpg', 'image.jpg') }
+    resume { Rack::Test::UploadedFile.new('test/fixtures/test.pdf', 'test.pdf') }
 
   end
 end
