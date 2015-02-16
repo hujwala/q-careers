@@ -1,0 +1,29 @@
+<div class="panel panel-default">
+  <div class="panel-body" style="height:auto;">
+
+    <% fresher = career_interest.candidate %>
+    <div class="fs-24 text-color-green mb-20"><%= fresher.name %></div>
+
+    <table class="table table-condensed table-hover table-striped">
+      <tbody>
+        <%hsh = {
+                  "Name" => fresher.name,
+                  "Email" => fresher.email,
+                  "Phone" => fresher.phone,
+                  "Current City" => fresher.current_city,
+                  "Native City" => fresher.native_city,
+                  "Graduation Year" => fresher.year_of_passing,
+                  "Skills" => fresher.skills,
+                  "Resume" => fresher.resume.file.filename
+                }%>
+        <% hsh.each do |k, v| %>
+          <tr>
+            <td><%= k %></td>
+            <td><%= v %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+  </div>
+</div>
