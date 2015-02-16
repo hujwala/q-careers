@@ -391,7 +391,7 @@ DEPENDENCIES
   kaminari
   parallel_tests
   pg
-  poodle-rb (~> 0.1.0)
+  poodle-rb (~> 0.1.2)
   pry
   pry-doc
   pry-rails

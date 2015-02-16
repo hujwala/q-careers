@@ -9,7 +9,7 @@
       %>
       <%#= theme_image(@event, redirect_url, :logo, "logo.image.url", change_picture_url: change_picture_url) %>
     </div>
-    <div class="pull-left ml-10" style="width:65%;">
+    <div class="pull-left ml-10" style="width:100%;">
       <%= theme_panel_heading(@event.name) %>
       <%= theme_panel_sub_heading(stringify_date(@event.date), "#") if @event.date %>
       <%= theme_panel_description(@event.venue) %>
@@ -18,6 +18,7 @@
 
     <div class="cl-20"></div>
 
+    <%= link_to("Checkout Events Page", "/public/events/#{@event.slug}", class: "btn btn-info btn-xs", target: "_blank") %>
     <%= theme_edit_button(main_app.edit_admin_event_path(@event)) %>
     <%= theme_delete_button(main_app.admin_event_path(@event)) %>
 
@@ -25,16 +26,23 @@
 </div>
 
 <%# Display Projects %>
+<% count = @event.career_interests.count %>
+
 <div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      Career Interests (<%= count %>)
+    </h3>
+  </div>
   <div id="div_event_career_interests" class="panel-body" style="height:auto;">
     <div class='cl'></div>
-
+      <%= render partial: "admin/events/career_interests/index" %>
     <div class='cl'></div>
   </div>
 </div>
 
 <%= theme_more_widget(@event,
-          data_columns: [:id, :created_at, :updated_at],
+          data_columns: [:id, :slug, :created_at, :updated_at],
           super_admin: true) %>
 
 

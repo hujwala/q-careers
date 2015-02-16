@@ -11,9 +11,9 @@
   <div class="media-body">
     <%= theme_item_title(event.name, main_app.admin_event_path(event)) %>
     <%= theme_item_sub_title(stringify_date(event.date)) if event.date %>
-    <%= theme_item_description(event.venue) %>
+    <%#= theme_item_description(event.venue) %>
     <%= clear_tag(10) %>
-    <%= theme_item_description(event.description, 150) %>
+    <%= theme_item_description(event.description, 80) %>
   </div>
 </div>
 

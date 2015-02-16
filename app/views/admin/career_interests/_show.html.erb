@@ -1,0 +1,40 @@
+<% fresher = @career_interest.candidate %>
+<%= flash_message if request.xhr? -%>
+
+<div class="panel panel-default">
+  <div class="panel-body" style="height:auto;">
+    <div class="pull-left" style="width:30%;">
+      <%
+        #redirect_url = main_app.admin_career_interest_path(@career_interest)
+        #change_picture_url = upload_image_link(@career_interest, redirect_url, :logo)
+      %>
+      <%#= theme_image(@career_interest, redirect_url, :logo, "logo.image.url", change_picture_url: change_picture_url) %>
+    </div>
+    <div class="pull-left ml-10" style="width:100%;">
+      <%= theme_panel_heading(fresher.name) %>
+      <%= theme_panel_sub_heading("#{fresher.year_of_passing} Graduate", "#") %>
+      <%= theme_panel_description("Current Location: " + fresher.display_current_address) %>
+      <%= theme_panel_description("Native Location: " + fresher.display_native_address) %>
+      <%= theme_panel_description(fresher.skills, "fs-14 mt-10 text-color-gray") %>
+    </div>
+    <%= clear_tag(20) %>
+
+    <%= link_to("Download CV", main_app.download_admin_event_career_interest_path(@event, @career_interest), class: "btn btn-primary btn-sm pull-right") %>
+    <%= clear_tag(10) %>
+
+  </div>
+</div>
+
+<%= theme_more_widget(fresher,
+          heading: "Applicant Details",
+          data_columns: [:name, :email, :phone, :current_city, :current_state, :current_country, :native_city, :native_state, :native_country, :year_of_passing, :experience_in_years, :skills],
+          super_admin: false) %>
+
+<%= theme_more_widget(fresher,
+          data_columns: [:id, :type, :created_at, :updated_at],
+          super_admin: true) %>
+
+
+
+
+

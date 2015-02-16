@@ -1,0 +1,30 @@
+<%
+  unless defined?(show_apply_button)
+    show_apply_button = true
+  end
+%>
+<%= flash_message if request.xhr? -%>
+
+<div class="panel panel-default">
+  <div class="panel-body" style="height:auto;">
+    <div class="pull-left" style="width:30%;">
+      <%
+        #redirect_url = main_app.admin_event_path(event)
+        #change_picture_url = upload_image_link(event, redirect_url, :logo)
+      %>
+      <%#= theme_image(event, redirect_url, :logo, "logo.image.url", change_picture_url: change_picture_url) %>
+    </div>
+    <div class="pull-left ml-10" style="width:100%;">
+      <%= link_to theme_panel_heading(event.name), main_app.public_event_path(id: event.slug), target: "_blank" %>
+      <%= theme_panel_sub_heading(stringify_date(event.date), "#") if event.date %>
+      <%= theme_panel_description(event.venue) %>
+      <%= clear_tag(10) %>
+      <%= theme_panel_description(event.description, "fs-14 mt-10 text-color-gray") %>
+    </div>
+
+    <div class="cl-20"></div>
+
+    <%= link_to("View Details / Apply", main_app.public_event_path(id: event.slug), class: "btn btn-primary", target: "_blank") if show_apply_button %>
+
+  </div>
+</div>

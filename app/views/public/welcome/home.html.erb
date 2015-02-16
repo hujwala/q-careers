@@ -1,0 +1,27 @@
+<%= clear_tag(30) %>
+
+<% if @event %>
+
+  <%# Renders a partial to display all the events %>
+  <div class="row">
+
+    <div id="div_event_details" class="col-sm-6">
+      <% begin %>
+        <%= render partial: @event.slug %>
+      <% rescue %>
+        <%= image_tag "advertisement#{[1,2,3,1,2,3,1,2,3,1,2,3].sample}.png", width: "100%" %>
+      <% end %>
+      <div class="visible-xs cl-10"></div>
+    </div>
+
+    <div id="div_event_form" class="col-sm-6">
+      <%= render :partial=>"public/events/show", :locals=>{:event=>@event, show_apply_button: false} %>
+      <%= clear_tag(10) %>
+      <%= render :partial=>"public/events/form" %>
+    </div>
+
+  </div>
+
+  <%= clear_tag(30) %>
+
+<% end %>

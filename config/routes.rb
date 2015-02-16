@@ -9,9 +9,20 @@ Rails.application.routes.draw do
   # Public pages
   # ------------
 
-  root :to => 'welcome#home'
+  root :to => 'public/welcome#home'
 
-  # resources :careers_interests
+  namespace :public do
+    resources :events, only: [:index, :show] do
+      member do
+        post :apply
+      end
+      resources :career_interests, only: [:show] do
+        member do
+          get :confirm
+        end
+      end
+    end
+  end
 
   # ------------
   # Admin pages
@@ -19,11 +30,10 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :events do
-      resources :career_interests
-    end
-    resources :candidates do
-      collection do
-        get 'download'
+      resources :career_interests do
+        member do
+          get 'download'
+        end
       end
     end
   end

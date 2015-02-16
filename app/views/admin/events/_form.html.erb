@@ -15,6 +15,9 @@
         <%# Name (string)  %>
         <%= theme_form_field(@event, :name) %>
 
+        <%# Slug (string)  %>
+        <%= theme_form_field(@event, :slug) %>
+
         <%# Date (string)  %>
         <% value = @event.date ? @event.date.strftime("%d/%m/%Y") : "" %>
         <%= theme_form_field(@event, :date, html_options: {"data-provide".to_sym => "datepicker", value: value}) %>

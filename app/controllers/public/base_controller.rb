@@ -1,7 +1,7 @@
-class Users::BaseController < ApplicationController
+class Public::BaseController < ApplicationController
 
-  layout 'poodle/application'
-  before_filter :require_user, :set_navs, :parse_pagination_params
+  layout 'poodle/public'
+  before_filter :set_navs, :parse_pagination_params
 
   def stylesheet_filename
     @stylesheet_filename = "application"
