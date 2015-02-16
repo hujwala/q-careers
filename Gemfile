@@ -32,8 +32,8 @@ gem "codeclimate-test-reporter", group: :test, require: nil
 
 gem 'q_auth_ruby_client', '~> 0.0.5'
 #gem 'q_auth_ruby_client', path: "/Users/kvarma/Projects/QwinixLabs/q-apps/q_auth_ruby_client"
-#gem 'poodle-rb', '~> 0.1.0'
-gem 'poodle-rb', path: "/Users/kvarma/Projects/QwinixLabs/q-apps/poodle"
+gem 'poodle-rb', '~> 0.1.0'
+# gem 'poodle-rb', path: "/Users/kvarma/Projects/QwinixLabs/q-apps/poodle"
 
 # Poodle Dependencies
 gem "handy-css-rails", "0.0.7"
