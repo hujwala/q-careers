@@ -70,6 +70,5 @@ class Candidate < ActiveRecord::Base
     address_list << native_country unless native_country.blank?
     address_list.join(", ")
   end
->>>>>>> master
 
 end

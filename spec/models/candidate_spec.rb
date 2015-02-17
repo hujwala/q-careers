@@ -25,19 +25,9 @@ RSpec.describe Candidate, :type => :model do
 
     it { should validate_presence_of :phone }
     it { should validate_presence_of :current_city }
-    it { should validate_presence_of :current_state }
-    it { should validate_presence_of :current_country }
     it { should validate_presence_of :native_city }
-    it { should validate_presence_of :native_state }
-    it { should validate_presence_of :native_country }
     it { should validate_presence_of :skills }
     it { should validate_presence_of :resume }
-
-
-    it { should validate_inclusion_of(:current_country).in_array(Candidate::COUNTRY_LIST)  }
-    it { should validate_inclusion_of(:native_country).in_array(Candidate::COUNTRY_LIST)  }
-    it { should validate_inclusion_of(:year_of_passing).in_array(Candidate::YEAR_OF_PASSING_LIST)  }
-    it { should validate_inclusion_of(:experience_in_years).in_array(Candidate::YEARS_LIST)  }
 
   end
 
@@ -72,31 +62,6 @@ RSpec.describe Candidate, :type => :model do
     expect(candidate).to be_valid
   end
 
-  it "should validate current_state length" do
-
-    candidate.current_state = "Karnataka"*128
-    candidate.valid?
-    expect(candidate.errors[:current_state].size).to be 1
-    expect(candidate).to be_invalid
-
-    candidate.current_state = "Karnataka"
-    candidate.valid?
-    expect(candidate.errors[:current_state].size).to be 0
-    expect(candidate).to be_valid
-  end
-
-  it "should validate current_country length" do
-
-    candidate.current_country = "India"*128
-    candidate.valid?
-    expect(candidate.errors[:current_country].size).to be 2
-    expect(candidate).to be_invalid
-
-    candidate.current_country = "India"
-    candidate.valid?
-    expect(candidate.errors[:current_country].size).to be 0
-    expect(candidate).to be_valid
-  end
 
   it "should validate native_city length" do
 
@@ -108,32 +73,6 @@ RSpec.describe Candidate, :type => :model do
     candidate.native_city = "Mysore"
     candidate.valid?
     expect(candidate.errors[:native_city].size).to be 0
-    expect(candidate).to be_valid
-  end
-
-  it "should validate native_state length" do
-
-    candidate.native_state = "Karnataka"*128
-    candidate.valid?
-    expect(candidate.errors[:native_state].size).to be 1
-    expect(candidate).to be_invalid
-
-    candidate.native_state = "Karnataka"
-    candidate.valid?
-    expect(candidate.errors[:native_state].size).to be 0
-    expect(candidate).to be_valid
-  end
-
-  it "should validate native_country length" do
-
-    candidate.native_country = "India"*128
-    candidate.valid?
-    expect(candidate.errors[:native_country].size).to be 2
-    expect(candidate).to be_invalid
-
-    candidate.native_country = "India"
-    candidate.valid?
-    expect(candidate.errors[:native_country].size).to be 0
     expect(candidate).to be_valid
   end
 end

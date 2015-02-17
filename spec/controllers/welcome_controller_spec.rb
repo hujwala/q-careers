@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe WelcomeController, type: :controller do
+RSpec.describe Public::WelcomeController, type: :controller do
 	describe "GET index" do
 		render_views
     it "should show welcome message" do

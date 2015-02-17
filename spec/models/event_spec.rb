@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Event, type: :model do
 
-let(:event1) {FactoryGirl.create(:event, :name => "Event1")}
-let(:event2) {FactoryGirl.create(:event, :name => "Event2")}
-let(:event3) {FactoryGirl.create(:event, :name => "Event3")}
+let(:event1) {FactoryGirl.create(:event, :name => "Event1", :slug => "slug1")}
+let(:event2) {FactoryGirl.create(:event, :name => "Event2", :slug => "slug2")}
+let(:event3) {FactoryGirl.create(:event, :name => "Event3", :slug => "slug3")}
 
   context "Factory" do
     it "should validate all the event factories" do
@@ -15,6 +15,7 @@ let(:event3) {FactoryGirl.create(:event, :name => "Event3")}
   context "Validations" do
     it { should validate_presence_of :name }
     it { should validate_presence_of :date }
+    it { should validate_presence_of :slug }
     it { should validate_presence_of :venue }
     it { should allow_value('Mysore').for(:venue )}
     it { should_not allow_value('Mysore$%?').for(:venue )}
