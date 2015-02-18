@@ -19,6 +19,7 @@ capybara-*.html
 
 /public/system/*
 /public/uploads/*
+/public/resumes/*
 /public/assets/*
 /coverage/
 /spec/tmp/*

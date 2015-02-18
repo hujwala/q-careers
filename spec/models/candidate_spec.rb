@@ -87,6 +87,20 @@ RSpec.describe Candidate, :type => :model do
       fresher = FactoryGirl.build(:fresher, name: "Mohandas Karam Chand Gandhi")
       expect(fresher.namify).to eq("MK")
     end
+
+    it "display_current_address" do
+      expect(FactoryGirl.build(:fresher, current_city: "Mysore", current_state: "Karnataka", current_country: "India").display_current_address).to eq("Mysore, Karnataka, India")
+      expect(FactoryGirl.build(:fresher, current_city: "Mysore", current_state: nil, current_country: "India").display_current_address).to eq("Mysore, India")
+      expect(FactoryGirl.build(:fresher, current_city: nil, current_state: "Karnataka", current_country: "India").display_current_address).to eq("Karnataka, India")
+      expect(FactoryGirl.build(:fresher, current_city: nil, current_state: nil, current_country: "India").display_current_address).to eq("India")
+    end
+
+    it "display_native_address" do
+      expect(FactoryGirl.build(:fresher, native_city: "Mysore", native_state: "Karnataka", native_country: "India").display_native_address).to eq("Mysore, Karnataka, India")
+      expect(FactoryGirl.build(:fresher, native_city: "Mysore", native_state: nil, native_country: "India").display_native_address).to eq("Mysore, India")
+      expect(FactoryGirl.build(:fresher, native_city: nil, native_state: "Karnataka", native_country: "India").display_native_address).to eq("Karnataka, India")
+      expect(FactoryGirl.build(:fresher, native_city: nil, native_state: nil, native_country: "India").display_native_address).to eq("India")
+    end
   end
 
 end
