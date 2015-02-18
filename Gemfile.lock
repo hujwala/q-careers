@@ -285,6 +285,7 @@ GEM
     rake (10.4.2)
     rdoc (4.2.0)
     rmagick (2.13.4)
+    rolify (3.5.2)
     rspec-core (3.2.0)
       rspec-support (~> 3.2.0)
     rspec-expectations (3.2.0)
@@ -400,6 +401,7 @@ DEPENDENCIES
   railroady
   rails (= 4.2.0)
   rmagick
+  rolify
   rspec-rails (~> 3.0)
   ruby-progressbar
   sass-rails (~> 5.0)

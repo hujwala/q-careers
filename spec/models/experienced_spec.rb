@@ -11,7 +11,7 @@ RSpec.describe Experienced, :type => :model do
   end
 
   context "Validations" do
-    it { should validate_inclusion_of(:experience_in_years).in_array(Candidate::YEARS_LIST)}
+    it { should validate_inclusion_of(:experience_in_years).in_array(Experienced::YEARS_LIST)}
   end
 
 end

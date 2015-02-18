@@ -5,9 +5,6 @@ class Candidate < ActiveRecord::Base
   has_many :events, through: :career_interests
 
   # Constants
-  CURRENT_YEAR = Date.today.year
-  YEAR_OF_PASSING_LIST = (CURRENT_YEAR-2..CURRENT_YEAR).to_a
-  YEARS_LIST = (1..25).to_a
   COUNTRY_LIST = ["India", "United States", "United Arab Emirates", "Costa Rica"]
 
   # Validations
@@ -34,17 +31,29 @@ class Candidate < ActiveRecord::Base
   mount_uploader :resume, ResumeUploader
 
   # Class Methods
+  # -------------
+
+  # * Return candidate which matches the email else will build a new one with the passed email
+  # == Examples
+  #   >>> Fresher.fetch("some@email.com")
+  #   >>> Experienced.fetch("some@email.com")
+  #   => <Fresher Active Record Object>
   def self.fetch(params)
-    if params[:email]
-      fresher = Fresher.find_by_email(params[:email])
-    end
+    fresher = Fresher.find_by_email(params[:email]) if params[:email]
     fresher = Fresher.new(params) unless fresher
     fresher
   end
 
   # Instance Methods
+  # -------------
+
+  # * Return the first letters of first name and last name
+  # == Examples
+  #   >>> fresher = Fresher.new(name: "Ravi Shankar")
+  #   >>> fresher.namify
+  #   => "RS"
   def namify
-    self.name.split(" ").map{|x| x.first.capitalize}[0..2].join("")
+    self.name.split(" ").map{|x| x.first.capitalize}[0..1].join("")
   end
 
   # * Return address which includes city, state & country

@@ -11,7 +11,7 @@ RSpec.describe Fresher, :type => :model do
   end
 
   context "Validations" do
-    it { should validate_inclusion_of(:year_of_passing).in_array(Candidate::YEAR_OF_PASSING_LIST)}
+    it { should validate_inclusion_of(:year_of_passing).in_array(Fresher::YEAR_OF_PASSING_LIST)}
   end
 
 end

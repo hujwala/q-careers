@@ -7,7 +7,7 @@ class Event < ActiveRecord::Base
   # Validations
   extend PoodleValidators
 
-  validate_string :name, mandatory: true
+  validate_string :name, mandatory: true, format: /.*/i
   validate_string :slug, mandatory: true, format: /.*/i
   validates :date, presence: true
   validate_string :venue, mandatory: true, format: /\A[a-zA-Z1-9\,\.\-\ \(\)\.+]*\z/i
