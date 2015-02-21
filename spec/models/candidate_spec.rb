@@ -36,8 +36,8 @@ RSpec.describe Candidate, :type => :model do
     it { should allow_value('9880123123').for(:phone )}
     it { should allow_value('9880 123 123').for(:phone )}
     it { should allow_value('9880-123-123').for(:phone )}
-    #it { should_not allow_value('SomePhoneNumber').for(:phone )}
-    #it { should_not allow_value('1234 1234 1234 1234').for(:phone )}
+    it { should_not allow_value('12343').for(:phone )}
+    it { should_not allow_value('1234 1234 1234 1234').for(:phone )}
 
     # FIXME - Check minimum length (poodle validation sets it as 3)
     # And Maximum as 128
