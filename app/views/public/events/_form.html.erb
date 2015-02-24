@@ -19,7 +19,7 @@
         <%= theme_form_field(@fresher, :native_city) %>
 
         <%= f.fields_for :candidate do |c| %>
-          <% options_list = Array[*Candidate::YEAR_OF_PASSING_LIST.collect {|v,i| [v,v] }].sort %>
+          <% options_list = Array[*Fresher::YEAR_OF_PASSING_LIST.collect {|v,i| [v,v] }].sort %>
           <%= theme_form_select_group(c, @fresher, :year_of_passing, options_list, label: "Year of Passing", param_name: "fresher[year_of_passing]", prompt: true) %>
         <% end %>
 
