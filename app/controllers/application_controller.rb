@@ -5,10 +5,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   ## This filter method is used to fetch current user
-  before_filter :current_user, :set_default_title, :stylesheet_filename, :javascript_filename
+  before_filter :stylesheet_filename, :javascript_filename, :set_default_title, :current_user
 
-  include Poodle::ApplicationHelper
-  helper Poodle::ApplicationHelper
+  private
 
   def set_default_title
     set_title("Q-Careers")

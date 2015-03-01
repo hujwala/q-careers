@@ -13,15 +13,12 @@
 //= require jquery
 //= require jquery_ujs
 //= require poodle/bootstrap
-//= require bootstrap-datepicker
-//= require poodle/common
+//= require poodle/cropper
 //= require poodle/utilities
-//= require poodle/photo_upload
+//
 // For jQery validations - http://jqueryvalidation.org/documentation/
 //= require jquery.validate
 //= require jquery.validate.additional-methods
+//
 // include validation init functions
 //= require_tree ./validations
-//= require dev_scripts
-
-

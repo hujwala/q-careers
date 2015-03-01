@@ -10,7 +10,7 @@
 
         <div class="row">
           <div class="col-sm-6">
-            <% options_list = Array[*Candidate::YEAR_OF_PASSING_LIST.collect {|v,i| [v,v] }].sort %>
+            <% options_list = Array[*Fresher::YEAR_OF_PASSING_LIST.collect {|v,i| [v,v] }].sort %>
             <%= theme_form_group("Graduation Year", required: false) do %>
               <%= select_tag("year_of_passing", options_for_select(options_list, @filters[:year_of_passing]), :class=>"form-control pull-left filter-select", :prompt => "All") %>
             <% end %>
