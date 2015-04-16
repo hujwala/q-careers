@@ -12,8 +12,14 @@
  *= require poodle/bootstrap-theme
  *= require poodle/font-awesome
  *= require poodle/poodle-theme
+ *= require poodle/cropper
  *= require handycss.css
- *= require bootstrap-datepicker3
  *= require_self
 
  */
+
+img.centered {
+  display: block;
+  margin-left: auto;
+  margin-right: auto
+}

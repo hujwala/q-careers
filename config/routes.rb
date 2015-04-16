@@ -28,6 +28,8 @@ Rails.application.routes.draw do
   # Admin pages
   # ------------
 
+  get '/admin' => "admin/welcome#home", as: :admin_home
+
   namespace :admin do
     resources :events do
       resources :career_interests do
