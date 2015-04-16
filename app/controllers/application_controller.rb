@@ -21,4 +21,10 @@ class ApplicationController < ActionController::Base
     @javascript_filename = "application"
   end
 
+  # Method to redirect after successful authentication
+  def redirect_to_appropriate_page_after_sign_in
+    redirect_to users_dashboard_path if @current_user && !@current_user.token_expired?
+    return
+  end
+
 end
