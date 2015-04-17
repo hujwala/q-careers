@@ -5,6 +5,13 @@ class Public::CareerInterestsController < Public::BaseController
   def show
   end
 
+  def create
+      @career_interest = CareerInterest.new
+      @career_interest.assign_attributes(permitted_params)
+      @career_interest.source = :registration_desk
+      save_resource(@career_interest)
+    end
+
   def confirm
     if @career_interest.confirm!
       redirect_to public_event_career_interest_path(@career_interest)

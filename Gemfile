@@ -32,9 +32,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Code Climate
 gem "codeclimate-test-reporter", group: :test, require: nil
 
-gem 'q_auth_ruby_client', '~> 0.0.8'
+gem 'q_auth_ruby_client', '~> 0.1.0'
 #gem 'q_auth_ruby_client', path: "/Users/kvarma/Projects/QwinixLabs/q-apps/q_auth_ruby_client"
-gem 'poodle-rb', '~> 0.1.4'
+gem 'poodle-rb', '~> 0.2.0'
 #gem 'poodle-rb', path: "/Users/kvarma/Projects/QwinixLabs/q-apps/poodle"
 
 # Poodle Dependencies
@@ -96,7 +96,7 @@ group :development, :test do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
+  gem 'spring', "~>1.3.3"
   #gem 'rspec', '~> 3.2.0'
   #gem 'rspec-rails', '~> 3.0'
 end

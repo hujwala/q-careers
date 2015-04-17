@@ -7,25 +7,31 @@
     <%= link_to raw("<i class=\"fa fa-dashboard\"></i> Dashboard"), main_app.users_dashboard_url %>
   </li>
 
-  <% if @current_user.is_admin? %>
-
-    <li class="heading">Admin</li>
-
-    <li class="<%= nav_class("admin/events") %>">
-      <%= link_to raw("<i class=\"fa fa-globe\"></i> Manage Events"), main_app.admin_events_path %>
+  <% if @current_user.is_q_careers_admin? %>
+    <li class="<%= nav_class("admin/users") %>">
+      <%= link_to raw("<i class=\"fa fa-globe\"></i> Manage Users"), main_app.admin_users_path %>
     </li>
-
-  <% elsif @current_user %>
-
-    <li class="heading">User</li>
-
-    <li class="<%= nav_class("admin/events") %>">
-      <%= link_to raw("<i class=\"fa fa-globe\"></i> Manage Events"), main_app.admin_events_path %>
-    </li>
-
   <% end %>
 
-  <li class="heading">Account</li>
+  <% if @current_user.is_recruiter? %>
+    <li class="<%= nav_class("admin/events") %>">
+      <%= link_to raw("<i class=\"fa fa-globe\"></i> Manage Events"), main_app.admin_events_path %>
+    </li>
+  <% end %>
+
+  <% if @current_user.is_volunteer? %>
+    <li class="<%= nav_class("admin/registrations") %>">
+      <%= link_to raw("<i class=\"fa fa-globe\"></i> Registration Desk"), main_app.admin_events_path %>
+    </li>
+  <% end %>
+
+  <% if @current_user %>
+    <li class="<%= nav_class("admin/recommendations") %>">
+      <%= link_to raw("<i class=\"fa fa-globe\"></i> My Referrals"), main_app.admin_events_path %>
+    </li>
+  <% end %>
+
+  <li class="heading">My Account</li>
 
   <li class="<%= nav_class("account/profile") %>">
     <%= link_to raw("<i class=\"fa fa-user\"></i> My Profile"), QAuthRubyClient.configuration.q_auth_url + QAuthRubyClient.configuration.my_profile_url, target: "_blank" %>

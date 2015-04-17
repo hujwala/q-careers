@@ -1,0 +1,29 @@
+<%
+  role_color_hsh = {q_careers_admin: "danger", recruiter: "success", volunteer: "info", employee: "primary"}
+  role_color_hsh.default = "default"
+  role_color = role_color_hsh[user.q_careers_role]
+%>
+
+<div class="panel media p-5 <%= role_color %>">
+  <a class="media-left" href="#" style="width:25%;">
+    <%= display_user_image(user, "thumb_url", width: "60px", popover: user.designation) %>
+  </a>
+  <div class="media-body">
+    <%= theme_item_title(user.name, admin_user_path(user)) %>
+    <%= theme_item_sub_title(user.designation) if user.designation %>
+    <%= clear_tag %>
+    <% if user.is_admin? %>
+      <span class="mr-10 mt-5 label label-<%= user.is_super_admin? ? "danger" : "warning" %>">
+        <%= user.is_super_admin? ? "Q-Auth: Super Admin" : "Q-Auth: Admin" %>
+      </span>
+    <% end %>
+    <span class="mr-10 mt-5 label label-<%= role_color %>">
+      <%= user.display_q_careers_role %>
+    </span>
+
+  </div>
+
+</div>
+
+
+

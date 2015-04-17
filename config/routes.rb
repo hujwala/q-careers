@@ -31,6 +31,20 @@ Rails.application.routes.draw do
   get '/admin' => "admin/welcome#home", as: :admin_home
 
   namespace :admin do
+    resources :users, only: [:index, :show] do
+      collection do
+        get 'refresh'
+      end
+      member do
+        put 'make_q_careers_admin', as: :make_q_careers_admin
+        put 'make_recruiter', as: :make_recruiter
+        put 'make_volunteer', as: :make_volunteer
+
+        put 'remove_q_careers_admin', as: :remove_q_careers_admin
+        put 'remove_recruiter', as: :remove_recruiter
+        put 'remove_volunteer', as: :remove_volunteer
+      end
+    end
     resources :events do
       resources :career_interests do
         member do

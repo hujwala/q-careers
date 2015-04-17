@@ -3,10 +3,14 @@ class CareerInterest < ActiveRecord::Base
   # Associations
   belongs_to :candidate
   belongs_to :event
+  belongs_to :referrer
 
   # Validations
   validates :candidate, presence: true
   validates :event, presence: true
+
+  # Callbacks
+  before_save :check_source_and_referrer
 
   # Class Methods
 
@@ -24,7 +28,8 @@ class CareerInterest < ActiveRecord::Base
   # Instance Methods
 
   def application_id
-    "EV#{event.id}-CI#{id}"
+    source_code = source.split("_").map{|x| x[0].capitalize}.join("")
+    "#{event.id}-#{source_code}#{100+id}"
   end
 
   def confirm!
@@ -33,6 +38,17 @@ class CareerInterest < ActiveRecord::Base
 
   def applicant_name
     candidate.name
+  end
+
+  def change_referrer(user)
+    self.referrer = user
+    self.save
+  end
+
+  private
+
+  def check_source_and_referrer
+    self.source = :employe_referral if referrer.present?
   end
 
 end

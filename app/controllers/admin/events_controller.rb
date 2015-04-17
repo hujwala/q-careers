@@ -1,5 +1,7 @@
 class Admin::EventsController < Poodle::AdminController
 
+  before_filter :require_recruiter
+
   private
 
   def permitted_params
