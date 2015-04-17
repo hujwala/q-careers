@@ -1,5 +1,6 @@
 class Admin::CareerInterestsController < Poodle::AdminController
 
+  before_filter :require_recruiter
   before_filter :get_event
   before_filter :get_career_interest, only: :download
 

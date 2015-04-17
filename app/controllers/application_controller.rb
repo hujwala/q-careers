@@ -27,4 +27,31 @@ class ApplicationController < ActionController::Base
     return
   end
 
+  def require_q_careers_admin
+    current_user
+    unless @current_user.is_q_careers_admin?
+      set_notification_messages(I18n.t("authentication.permission_denied_heading"), I18n.t("authentication.permission_denied_message"), :error)
+      redirect_to users_dashboard_path
+      return
+    end
+  end
+
+  def require_recruiter
+    current_user
+    unless @current_user.is_recruiter?
+      set_notification_messages(I18n.t("authentication.permission_denied_heading"), I18n.t("authentication.permission_denied_message"), :error)
+      redirect_to users_dashboard_path
+      return
+    end
+  end
+
+  def require_volunteer
+    current_user
+    unless @current_user.is_volunteer?
+      set_notification_messages(I18n.t("authentication.permission_denied_heading"), I18n.t("authentication.permission_denied_message"), :error)
+      redirect_to users_dashboard_path
+      return
+    end
+  end
+
 end

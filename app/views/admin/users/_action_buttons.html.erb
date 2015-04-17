@@ -1,0 +1,62 @@
+<div class="panel-footer">
+
+  <div class="dropdown pull-right m-10">
+
+    <button class="btn btn-default btn-xs dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true" style="color:inherit;">
+      <%= raw("<i class=\"fa fa-cogs mr-5\"></i> Action") %>
+      <span class="caret"></span>
+    </button>
+
+    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+
+      <% case @user.q_careers_role %>
+      <% when "user", 'employee' %>
+
+        <li role="presentation">
+          <%= link_to raw("<i class=\"fa fa-plus-square mr-5\"></i> Make Q-Career Admin"), make_q_careers_admin_admin_user_path(id: @user.id), method: :put, remote: true, role: "menuitem", tabindex: "-1" %>
+        </li>
+        <li role="presentation" class="divider"></li>
+
+        <li role="presentation">
+          <%= link_to raw("<i class=\"fa fa-plus mr-5\"></i> Make Recruiter"), make_recruiter_admin_user_path(id: @user.id), method: :put, remote: true, role: "menuitem", tabindex: "-1" %>
+        </li>
+        <li role="presentation" class="divider"></li>
+
+        <li role="presentation">
+          <%= link_to raw("<i class=\"fa fa-plus-square mr-5\"></i> Make Volunteer"), make_volunteer_admin_user_path(id: @user.id), method: :put, remote: true, role: "menuitem", tabindex: "-1" %>
+        </li>
+      <% when "q_careers_admin" %>
+        <li role="presentation">
+          <%= link_to raw("<i class=\"fa fa-plus-square mr-5\"></i> Remove Q-Career Admin"), remove_q_careers_admin_admin_user_path(id: @user.id), method: :put, remote: true, role: "menuitem", tabindex: "-1" %>
+        </li>
+      <% when "recruiter" %>
+        <li role="presentation">
+          <%= link_to raw("<i class=\"fa fa-plus-square mr-5\"></i> Make Q-Career Admin"), make_q_careers_admin_admin_user_path(id: @user.id), method: :put, remote: true, role: "menuitem", tabindex: "-1" %>
+        </li>
+        <li role="presentation" class="divider"></li>
+
+        <li role="presentation">
+          <%= link_to raw("<i class=\"fa fa-plus mr-5\"></i> Remove Recruiter"), remove_recruiter_admin_user_path(id: @user.id), method: :put, remote: true, role: "menuitem", tabindex: "-1" %>
+        </li>
+      <% when "volunteer" %>
+        <li role="presentation">
+          <%= link_to raw("<i class=\"fa fa-plus-square mr-5\"></i> Make Q-Career Admin"), make_q_careers_admin_admin_user_path(id: @user.id), method: :put, remote: true, role: "menuitem", tabindex: "-1" %>
+        </li>
+        <li role="presentation" class="divider"></li>
+
+        <li role="presentation">
+          <%= link_to raw("<i class=\"fa fa-plus mr-5\"></i> Make Recruiter"), make_recruiter_admin_user_path(id: @user.id), method: :put, remote: true, role: "menuitem", tabindex: "-1" %>
+        </li>
+        <li role="presentation" class="divider"></li>
+
+        <li role="presentation">
+          <%= link_to raw("<i class=\"fa fa-plus mr-5\"></i> Remove Volunteer"), remove_volunteer_admin_user_path(id: @user.id), method: :put, remote: true, role: "menuitem", tabindex: "-1" %>
+        </li>
+      <% end %>
+      </ul>
+
+  </div>
+
+  <%= clear_tag %>
+
+</div>

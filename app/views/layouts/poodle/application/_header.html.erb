@@ -10,6 +10,9 @@
           <li><a href="#">Profile Settings</a></li>
           <li><a href="#">Notifications Settings</a></li>
           <li class="divider"></li>
+          <li class="dropdown-header">Q-Apps</li>
+          <li><%= link_to raw("Q-Auth"), QAuthRubyClient.configuration.q_auth_url, target: "_blank" %></li>
+          <li class="divider"></li>
           <li><%= link_to raw("Sign Out"), q_auth_ruby_client.sign_out_url, method: :delete %></li>
         </ul>
       </li>

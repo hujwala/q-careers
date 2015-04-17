@@ -1,0 +1,35 @@
+<%= flash_message if request.xhr? -%>
+<%
+  role_color_hsh = {q_careers_admin: "danger", recruiter: "success", volunteer: "info", employee: "primary"}
+  role_color_hsh.default = "default"
+%>
+
+<div class="panel panel-default">
+  <div class="panel-body" style="height:auto;">
+    <div class="pull-left" style="width:30%;">
+      <%= display_user_image(@user, "thumb_url", width: "120px", popover: @user.display_q_careers_role) %>
+    </div>
+    <div class="pull-left ml-10" style="width:65%;">
+      <%= theme_panel_heading(@user.name) %>
+      <%= theme_panel_sub_heading(@user.designation, "") %>
+
+      <%= clear_tag %>
+      <% if @user.is_admin? %>
+        <span class="mr-10 mt-5 label label-<%= @user.is_super_admin? ? "danger" : "warning" %>">
+          <%= @user.is_super_admin? ? "Q-Auth: Super Admin" : "Q-Auth: Admin" %>
+        </span>
+      <% end %>
+      <span class="mr-10 mt-5 label label-<%= role_color_hsh[@user.q_careers_role] %>">
+        <%= @user.display_q_careers_role %>
+      </span>
+
+    </div>
+    <%= clear_tag %>
+
+    <%= theme_panel_description(@user.biography, "fs-14 mt-10 text-color-gray") if @user.biography %>
+
+  </div>
+
+  <%= render partial: "action_buttons" %>
+
+</div>
