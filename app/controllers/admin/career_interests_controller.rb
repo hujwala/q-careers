@@ -9,6 +9,18 @@ class Admin::CareerInterestsController < Poodle::AdminController
 
   private
 
+  def default_collection_name
+    "career_interests"
+  end
+
+  def default_item_name
+    "career_interest"
+  end
+
+  def default_class
+    CareerInterest
+  end
+
   def prepare_filters
     @filters = {}
     @filters[:year_of_passing] = params[:year_of_passing] unless params[:year_of_passing].blank?
