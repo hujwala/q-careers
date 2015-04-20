@@ -20,4 +20,28 @@ class Event < ActiveRecord::Base
   #   => ActiveRecord::Relation object
   scope :search, lambda {|query| where("LOWER(events.name) LIKE LOWER('%#{query}%') OR LOWER(events.venue) LIKE LOWER('%#{query}%') OR LOWER(events.description) LIKE LOWER('%#{query}%')")}
 
+  # ----------------
+  # Class Methods
+  # ----------------
+
+  def self.upcoming_events
+    Event.where("date >= ?", Date.today)
+  end
+
+  # ----------------
+  # Instance Methods
+  # ----------------
+
+  def applications
+    career_interests.where("source='candidate'")
+  end
+
+  def registrations
+    career_interests.where("source='registration_desk'")
+  end
+
+  def referrals
+    career_interests.where("source='employee_referral'")
+  end
+
 end

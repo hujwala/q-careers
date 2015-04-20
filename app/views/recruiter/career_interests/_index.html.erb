@@ -1,0 +1,10 @@
+<%# Displays list of @career_interests %>
+<% @career_interests.each do |career_interest| %>
+  <% item_link = recruiter_event_career_interest_path(@event, career_interest) %>
+  <div id="div_career_interest_<%= career_interest.id %>">
+    <%= render :partial=>"common/candidate/item", :locals=>{candidate: career_interest.candidate, career_interest: career_interest, item_link: item_link} %>
+  </div>
+<% end %>
+<%= theme_panel_message(I18n.translate("forms.no_results")) if @career_interests.blank? %>
+
+<%= theme_paginate(@career_interests) %>

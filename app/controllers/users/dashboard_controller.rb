@@ -2,6 +2,8 @@ class Users::DashboardController < Users::BaseController
 
   # GET /dashboard
   def index
+    @event = Event.last
+    # @event = nil
   end
 
   private

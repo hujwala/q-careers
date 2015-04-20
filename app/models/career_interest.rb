@@ -3,7 +3,7 @@ class CareerInterest < ActiveRecord::Base
   # Associations
   belongs_to :candidate
   belongs_to :event
-  belongs_to :referrer
+  belongs_to :referrer, class_name: "QAuthRubyClient::User"
 
   # Validations
   validates :candidate, presence: true
@@ -12,6 +12,11 @@ class CareerInterest < ActiveRecord::Base
   # Callbacks
   before_save :check_source_and_referrer
 
+  # Source can be the following
+  # registration_desk
+  # candidate
+  # employee_referral
+
   # Class Methods
 
   # return an active record relation object with the search query in its where clause
@@ -19,7 +24,7 @@ class CareerInterest < ActiveRecord::Base
   # == Examples
   #   >>> candidate_search.search(query)
   #   => ActiveRecord::Relation object
-  scope :search, lambda {|query| where("LOWER(candidates.name) LIKE LOWER('%#{query}%') OR LOWER(candidates.skills) LIKE LOWER('%#{query}%') OR LOWER(candidates.current_city) LIKE LOWER('%#{query}%') OR LOWER(candidates.native_city) LIKE LOWER('%#{query}%')")}
+  scope :search, lambda {|query| where("LOWER(candidates.name) LIKE LOWER('%#{query}%') OR LOWER(candidates.email) LIKE LOWER('%#{query}%') OR LOWER(candidates.skills) LIKE LOWER('%#{query}%') OR LOWER(candidates.current_city) LIKE LOWER('%#{query}%') OR LOWER(candidates.native_city) LIKE LOWER('%#{query}%') OR LOWER(candidates.phone) LIKE LOWER('%#{query}%')")}
 
   def self.fetch(event, candidate)
     CareerInterest.where("event_id = ? AND candidate_id = ?", event.id, candidate.id).first || CareerInterest.new(event: event, candidate: candidate)
@@ -48,7 +53,7 @@ class CareerInterest < ActiveRecord::Base
   private
 
   def check_source_and_referrer
-    self.source = :employe_referral if referrer.present?
+    self.source = :employee_referral if referrer.present?
   end
 
 end

@@ -1,0 +1,48 @@
+<div class="row">
+	<div class="col-sm-9">
+		<%= render :partial=>"common/event/banner", locals: {event: @event, show_apply_button: false} %>
+	</div>
+	<div class="col-sm-3" style="padding-left:0">
+		<div class="panel panel-default p-10 text-color-gray" style="height:220px;text-align:center;">
+			<div id="div_registrations_count" class="text-color-green" style="font-size:100px;"><%= @event.registrations.count  %></div>
+			<div style="font-size:28px;">Registrations</div>
+		</div>
+	</div>
+</div>
+
+<%= render :partial => "common/nav_tab/events", locals:{ rg_class: "active" } %>
+
+<div class="row mb-10">
+	<div class="col-sm-6">
+		<%= theme_button('New Registration', 'plus', main_app.new_volunteer_event_registration_path) %>
+		<a onclick="$('#div_registration_filters').toggle()" class="btn btn-primary pull-left">Filter Results</a>
+	</div>
+	<div class="col-sm-6">
+		<%= theme_search_form(CareerInterest, main_app.volunteer_event_registrations_path(@event), :get, true, "Search!", "Search Registration") %>
+  </div>
+</div>
+
+
+<div class="row mb-10">
+	<div id="div_registration_filters" class="col-sm-12" style="display:none;">
+		<%= render :partial => "filters" %>
+  </div>
+</div>
+
+<%# Renders a partial to display all the registrations %>
+<div class="row">
+	<div id="div_registration_index" class="col-sm-6 hidden-xs">
+		<%= render :partial=>"index" %>
+	</div>
+
+	<div id="div_registration_drop_down" class="col-xs-12 visible-xs">
+		<%#= theme_drop_down(@registrations, :applicant_name) %>
+	</div>
+
+	<div id="div_registration_details" class="col-xs-12 col-sm-6">
+		<%= theme_detail_box(@registrations) %>
+	</div>
+
+</div>
+
+

@@ -1,0 +1,20 @@
+<% if @registration.errors.blank? && @candidate.errors.blank? %>
+	// Fill the right box with first item details
+  $('#div_registration_details').html("<%= escape_javascript(render(:partial=>"show")) %>");
+
+  // Refresh the updated item in the list
+  <% item_link = volunteer_event_registration_path(@event, @registration) %>
+  $("#div_registration_<%= @registration.id %>").html("<%= escape_javascript(render :partial => 'common/candidate/item', :locals => { candidate: @candidate, career_interest: @registration, item_link: item_link }) %>")
+  $(".panel-message").hide();
+<% else %>
+  $('#div_registration_details').html("<%= escape_javascript(render(:partial=>'form')) %>");
+  validateRegistrationForm();
+  // addDatePicker("#form_registration input.datepicker");
+
+  // Populate Server Side Errors
+  <%
+    text = "You have few errors. They have been highlighted."
+    error_message = content_tag(:div, text, class: "alert alert-danger")
+  %>
+  $("#registration_form_error").html("<%= escape_javascript(error_message) %>");
+<% end %>

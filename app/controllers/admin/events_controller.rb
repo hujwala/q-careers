@@ -1,6 +1,6 @@
 class Admin::EventsController < Poodle::AdminController
 
-  before_filter :require_recruiter
+  before_filter :require_admin
 
   private
 

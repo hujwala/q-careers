@@ -13,6 +13,7 @@ class Candidate < ActiveRecord::Base
   validate_string :name, mandatory: true
   validate_email :email
   validate_string :phone, mandatory: true, min_length: 8, max_length: 16, format: /\A[0-9\ \-\+]{6,12}\z/
+  validates :phone, uniqueness: true
 
   validate_string :current_city, mandatory: true, max_length: 128, format: /.*/i
   #validate_string :current_state, mandatory: true, max_length: 128, format: /.*/i
@@ -20,12 +21,11 @@ class Candidate < ActiveRecord::Base
   validate_string :native_city, mandatory: true, max_length: 128, format: /.*/i
   #validate_string :native_state, mandatory: true, max_length: 128, format: /.*/i
   #validate_string :native_country, mandatory: true, max_length: 128, format: /.*/i
-  validate_string :skills, mandatory: true, max_length: 512, format: /.*/i
 
   #validates :current_country, :inclusion => {:in => COUNTRY_LIST, :message => "%{value} is not a valid country" }
   #validates :native_country, :inclusion => {:in => COUNTRY_LIST, :message => "%{value} is not a valid country" }
 
-  validates :resume, presence: true
+  # validates :resume, presence: true
 
   # File Uploader Method Hook
   mount_uploader :resume, ResumeUploader
@@ -35,13 +35,13 @@ class Candidate < ActiveRecord::Base
 
   # * Return candidate which matches the email else will build a new one with the passed email
   # == Examples
-  #   >>> Fresher.fetch("some@email.com")
+  #   >>> Candidate.fetch("some@email.com")
   #   >>> Experienced.fetch("some@email.com")
-  #   => <Fresher Active Record Object>
+  #   => <Candidate Active Record Object>
   def self.fetch(params)
-    fresher = Fresher.find_by_email(params[:email]) if params[:email]
-    fresher = Fresher.new(params) unless fresher
-    fresher
+    candidate = Candidate.find_by_email(params[:email]) if params[:email]
+    candidate = Candidate.new(params) unless candidate
+    candidate
   end
 
   # Instance Methods

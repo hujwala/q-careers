@@ -45,8 +45,40 @@ Rails.application.routes.draw do
         put 'remove_volunteer', as: :remove_volunteer
       end
     end
-    resources :events do
+    resources :events
+  end
+
+  namespace :recruiter do
+    resources :events, only: [:index, :show] do
       resources :career_interests do
+        member do
+          get 'download'
+        end
+      end
+      resources :referrals, only: [:index, :show] do
+        member do
+          get 'download'
+        end
+      end
+    end
+  end
+
+  namespace :volunteer do
+    resources :events, only: [:index, :show] do
+      resources :registrations do
+        member do
+          get 'download'
+        end
+        collection do
+          get 'search'
+        end
+      end
+    end
+  end
+
+  namespace :employee do
+    resources :events, only: [:index, :show] do
+      resources :referrals do
         member do
           get 'download'
         end

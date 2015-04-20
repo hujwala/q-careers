@@ -18,26 +18,10 @@
 
     <div class="cl-20"></div>
 
-    <%= link_to("Checkout Events Page", "/public/events/#{@event.slug}", class: "btn btn-info btn-xs", target: "_blank") %>
+    <%= link_to("Checkout Event Page", "/public/events/#{@event.slug}", class: "btn btn-info btn-xs", target: "_blank") %>
     <%= theme_edit_button(main_app.edit_admin_event_path(@event)) %>
     <%= theme_delete_button(main_app.admin_event_path(@event)) %>
 
-  </div>
-</div>
-
-<%# Display Projects %>
-<% count = @event.career_interests.count %>
-
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">
-      Career Interests (<%= count %>)
-    </h3>
-  </div>
-  <div id="div_event_career_interests" class="panel-body" style="height:auto;">
-    <div class='cl'></div>
-      <%= render partial: "admin/events/career_interests/index" %>
-    <div class='cl'></div>
   </div>
 </div>
 

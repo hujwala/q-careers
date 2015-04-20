@@ -1,0 +1,23 @@
+<%
+  ci_class = "" unless defined?(ci_class)
+  rg_class = "" unless defined?(rg_class)
+  er_class = "" unless defined?(er_class)
+
+  applications = @event.applications.count
+  referrals = @event.referrals.count
+  registrations = @event.registrations.count
+%>
+
+<%= clear_tag(20) %>
+<ul class="nav nav-tabs">
+  <%= content_tag(:li, role: :presentation, class: ci_class) do %>
+    <%= link_to("Online Applicatons (#{applications})", recruiter_event_career_interests_path(@event))%>
+  <% end %>
+  <%= content_tag(:li, role: :presentation, class: rg_class) do %>
+    <%= link_to("Registrations (#{registrations})", volunteer_event_registrations_path(@event))%>
+  <% end %>
+  <%= content_tag(:li, role: :presentation, class: er_class) do %>
+    <%= link_to("Employee Referrals (#{referrals})", recruiter_event_referrals_path(@event))%>
+  <% end %>
+</ul>
+<%= clear_tag(20) %>

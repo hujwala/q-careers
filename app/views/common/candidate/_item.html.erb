@@ -1,0 +1,12 @@
+<% item_link = "#" unless defined?(item_link) %>
+<div class="panel panel-default media p-5">
+  <div class="pull-left" style="background-color:grey;color:white;font-size:24px;padding:10px;">
+    <%= career_interest.application_id %>
+  </div>
+  <div class="pull-left ml-10">
+    <%= theme_item_title(candidate.name, item_link) %>
+    <%= theme_item_sub_title("#{candidate.year_of_passing} Graduate") %>
+    <%= theme_item_description("#{candidate.current_city} (#{candidate.native_city})") %>
+  </div>
+  <%= clear_tag(10) %>
+</div>
