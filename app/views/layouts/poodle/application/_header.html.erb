@@ -3,12 +3,16 @@
   <ul class="nav nav-pills pull-right">
     <% if @current_user %>
       <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= @current_user.name %> <b class="caret"></b></a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <%= @current_user.name %>
+          <%= " (#{@current_user.display_q_careers_role})" unless Rails.env == "production" %>
+        <b class="caret"></b></a>
         <ul class="dropdown-menu">
           <li class="dropdown-header">Profile</li>
-          <li><a href="#">Update Profile</a></li>
-          <li><a href="#">Profile Settings</a></li>
-          <li><a href="#">Notifications Settings</a></li>
+
+          <li><%= link_to raw("<i class=\"fa fa-user\"></i> My Profile"), QAuthRubyClient.configuration.q_auth_url + QAuthRubyClient.configuration.my_profile_url, target: "_blank" %></li>
+
+
           <li class="divider"></li>
           <li class="dropdown-header">Q-Apps</li>
           <li><%= link_to raw("Q-Auth"), QAuthRubyClient.configuration.q_auth_url, target: "_blank" %></li>

@@ -1,6 +1,7 @@
 class Volunteer::RegistrationsController < Poodle::AdminController
 
   before_filter :require_volunteer
+  skip_before_filter :require_admin
   before_filter :get_event
 
   def new
@@ -18,11 +19,10 @@ class Volunteer::RegistrationsController < Poodle::AdminController
   end
 
   def create
-    @candidate = Candidate.fetch(candidate_params)
-    @registration = CareerInterest.fetch(@event, @candidate)
-
+    @candidate = Candidate.new(candidate_params)
     # FIXME - Params are passed now some odd way.
     @candidate.year_of_passing = params[:candidate][:candidate][:registration][:year_of_passing]
+    @registration = CareerInterest.new(event: @event, candidate: @candidate)
     @candidate.save && @registration.save
   end
 
@@ -94,6 +94,7 @@ class Volunteer::RegistrationsController < Poodle::AdminController
 
   def set_navs
     set_nav("volunteer/registrations")
+    set_title("Registrations | Q-Careers")
   end
 
 end

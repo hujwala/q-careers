@@ -1,6 +1,7 @@
 class Recruiter::CareerInterestsController < Poodle::AdminController
 
   before_filter :require_recruiter
+  skip_before_filter :require_admin
   before_filter :get_event
   before_filter :get_career_interest, only: :download
 
@@ -52,6 +53,7 @@ class Recruiter::CareerInterestsController < Poodle::AdminController
 
   def set_navs
     set_nav("recruiter/career_interests")
+    set_title("Career Interests | Q-Careers")
   end
 
 end

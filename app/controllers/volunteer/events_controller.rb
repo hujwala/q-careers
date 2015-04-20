@@ -1,6 +1,7 @@
 class Volunteer::EventsController < Poodle::AdminController
 
   before_filter :require_volunteer
+  skip_before_filter :require_admin
 
   private
 
@@ -26,6 +27,7 @@ class Volunteer::EventsController < Poodle::AdminController
 
   def set_navs
     set_nav("volunteer/registrations")
+    set_title("Registrations | Q-Careers")
   end
 
 end

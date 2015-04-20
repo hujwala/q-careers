@@ -10,6 +10,7 @@ class Users::DashboardController < Users::BaseController
 
   def set_navs
     set_nav("user/dashboard")
+    set_title("Dashboard | Q-Careers")
   end
 
 end

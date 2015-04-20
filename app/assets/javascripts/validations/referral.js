@@ -9,7 +9,11 @@ function validateReferralForm() {
             maxlength: 255
         },
         "candidate[email]": "required",
-        "candidate[phone]": "required",
+        "candidate[phone]": {
+            required: true,
+            minlength: 10,
+            maxlength: 10
+        },
         "candidate[current_city]": "required",
         "candidate[native_city]": "required",
         "candidate[candidate][referral[year_of_passing]]": "required",
@@ -29,13 +33,17 @@ function validateReferralForm() {
       errorElement: "span",
       errorClass: "help-block",
       messages: {
-        "candidate[name]": "can't be blank",
-        "candidate[email]": "can't be blank",
-        "candidate[phone]": "can't be blank",
-        "candidate[current_city]": "can't be blank",
-        "candidate[native_city]": "can't be blank",
-        "candidate[candidate][referral[year_of_passing]]": "can't be blank",
-        "candidate[resume]": "can't be blank"
+        "candidate[name]": "This field is required.",
+        "candidate[email]": "This field is required.",
+        "candidate[phone]": {
+          required: "This field is required.",
+          minlength: "10 digits required (mobile phone preferred)",
+          maxlength: "10 digits required (mobile phone preferred)"
+        },
+        "candidate[current_city]": "This field is required.",
+        "candidate[native_city]": "This field is required.",
+        "candidate[candidate][referral[year_of_passing]]": "This field is required.",
+        "candidate[resume]": "This field is required."
       },
       highlight: function(element) {
           $(element).parent().parent().addClass("has-error");
