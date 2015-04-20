@@ -1,6 +1,7 @@
 class Recruiter::EventsController < Poodle::AdminController
 
   before_filter :require_recruiter
+  skip_before_filter :require_admin
 
   private
 
@@ -26,6 +27,7 @@ class Recruiter::EventsController < Poodle::AdminController
 
   def set_navs
     set_nav("recruiter/career_interests")
+    set_title("Career Interests | Q-Careers")
   end
 
 end

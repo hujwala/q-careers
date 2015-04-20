@@ -1,6 +1,7 @@
 class Recruiter::ReferralsController < Poodle::AdminController
 
   before_filter :require_recruiter
+  skip_before_filter :require_admin
   before_filter :get_event
 
   def download
@@ -47,6 +48,7 @@ class Recruiter::ReferralsController < Poodle::AdminController
 
   def set_navs
     set_nav("recruiter/career_interests")
+    set_title("Employee Referrals | Q-Careers")
   end
 
 end

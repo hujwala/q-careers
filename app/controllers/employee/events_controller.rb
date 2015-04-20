@@ -1,5 +1,7 @@
 class Employee::EventsController < Poodle::AdminController
 
+  skip_before_filter :require_admin
+
   private
 
   def default_collection_name
@@ -24,6 +26,7 @@ class Employee::EventsController < Poodle::AdminController
 
   def set_navs
     set_nav("employee/referrals")
+    set_title("My Referrals | Q-Careers")
   end
 
 end

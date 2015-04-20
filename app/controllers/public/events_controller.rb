@@ -15,6 +15,7 @@ class Public::EventsController < Public::BaseController
     @event = Event.find_by_id(params[:id])
     @fresher = Fresher.fetch(fresher_params)
     @career_interest = CareerInterest.fetch(@event, @fresher)
+    @career_interest.source = :candidate
 
     # FIXME - Params are passed now some odd way.
     @fresher.year_of_passing = params[:fresher][:candidate][:year_of_passing]

@@ -1,6 +1,7 @@
 class Employee::ReferralsController < Poodle::AdminController
 
   before_filter :get_event
+  skip_before_filter :require_admin
 
   def new
     @candidate = Candidate.new
@@ -8,16 +9,17 @@ class Employee::ReferralsController < Poodle::AdminController
   end
 
   def create
-    @candidate = Candidate.fetch(permitted_params)
-    @referral = CareerInterest.fetch(@event, @candidate)
-    @referral.referrer = current_user
-
+    @candidate = Candidate.new(permitted_params)
     # FIXME - Params are passed now some odd way.
     @candidate.year_of_passing = params[:candidate][:candidate][:referral][:year_of_passing]
 
+    @referral = CareerInterest.new(event: @event, candidate: @candidate, referrer: current_user)
+
     if @candidate.save && @referral.save
+      flash[:success] = "Successfully saved the data."
       redirect_to employee_event_referral_path(@event, @referral)
     else
+      flash[:error] = "Error! The email/phone is already registered with us."
       redirect_to employee_event_referrals_path(@event)
     end
   end
@@ -80,6 +82,7 @@ class Employee::ReferralsController < Poodle::AdminController
 
   def set_navs
     set_nav("employee/referrals")
+    set_title("My Referrals | Q-Careers")
   end
 
 end

@@ -11,20 +11,11 @@ class Candidate < ActiveRecord::Base
   extend PoodleValidators
 
   validate_string :name, mandatory: true
-  validate_email :email
-  validate_string :phone, mandatory: true, min_length: 8, max_length: 16, format: /\A[0-9\ \-\+]{6,12}\z/
-  validates :phone, uniqueness: true
+  validate_email :email, uniqueness: true
+  validate_string :phone, mandatory: true, min_length: 10, max_length: 10, format: /\A[0-9\ \-\+]{6,12}\z/, uniqueness: true
 
   validate_string :current_city, mandatory: true, max_length: 128, format: /.*/i
-  #validate_string :current_state, mandatory: true, max_length: 128, format: /.*/i
-  #validate_string :current_country, mandatory: true, max_length: 128, format: /.*/i
   validate_string :native_city, mandatory: true, max_length: 128, format: /.*/i
-  #validate_string :native_state, mandatory: true, max_length: 128, format: /.*/i
-  #validate_string :native_country, mandatory: true, max_length: 128, format: /.*/i
-
-  #validates :current_country, :inclusion => {:in => COUNTRY_LIST, :message => "%{value} is not a valid country" }
-  #validates :native_country, :inclusion => {:in => COUNTRY_LIST, :message => "%{value} is not a valid country" }
-
   # validates :resume, presence: true
 
   # File Uploader Method Hook

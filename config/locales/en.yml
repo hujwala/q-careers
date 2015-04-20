@@ -1,2 +1,12 @@
 en:
-  hello: "Hello world"
+  activerecord:
+    errors:
+      models:
+        candidate:
+          attributes:
+            phone:
+              taken: "This email/phone is already registered"
+            email:
+              taken: "This email/phone is already registered"
+      full_messages:
+        format: "%{message}"

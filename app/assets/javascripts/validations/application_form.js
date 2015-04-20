@@ -9,7 +9,11 @@ function validateApplicationForm() {
             maxlength: 255
         },
         "fresher[email]": "required",
-        "fresher[phone]": "required",
+        "fresher[phone]": {
+            required: true,
+            minlength: 10,
+            maxlength: 10
+        },
         "fresher[current_city]": "required",
         "fresher[native_city]": "required",
         "fresher[candidate][year_of_passing]": "required",
@@ -18,13 +22,17 @@ function validateApplicationForm() {
       errorElement: "span",
       errorClass: "help-block",
       messages: {
-        "fresher[name]": "can't be blank",
-        "fresher[email]": "can't be blank",
-        "fresher[phone]": "can't be blank",
-        "fresher[current_city]": "can't be blank",
-        "fresher[native_city]": "can't be blank",
-        "fresher[candidate][year_of_passing]": "can't be blank",
-        "fresher[resume]": "can't be blank"
+        "fresher[name]": "This field is required.",
+        "fresher[email]": "This field is required.",
+        "fresher[phone]": {
+          required: "This field is required.",
+          minlength: "10 digits required (mobile phone preferred)",
+          maxlength: "10 digits required (mobile phone preferred)"
+        },
+        "fresher[current_city]": "This field is required.",
+        "fresher[native_city]": "This field is required.",
+        "fresher[candidate][year_of_passing]": "This field is required.",
+        "fresher[resume]": "This field is required."
       },
       highlight: function(element) {
           $(element).parent().parent().addClass("has-error");

@@ -12,7 +12,7 @@
       <%= theme_panel_sub_heading(stringify_date(@event.date), "#") if @event.date %>
       <%= theme_panel_description(@event.venue) %>
       <%= clear_tag(10) %>
-      <%= theme_panel_description(@event.description, "fs-14 mt-10 text-color-gray") %>
+      <%= theme_panel_description(@event.description, "fs-14 mt-10 mb-20 text-color-gray") %>
 
       <%= link_to("Checkout Event Page", "/public/events/#{@event.slug}", class: "btn btn-info btn-large", target: "_blank") %>
 
