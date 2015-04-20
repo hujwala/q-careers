@@ -34,7 +34,7 @@ gem "codeclimate-test-reporter", group: :test, require: nil
 
 gem 'q_auth_ruby_client', '~> 0.1.1'
 #gem 'q_auth_ruby_client', path: "/Users/kvarma/Projects/QwinixLabs/q-apps/q_auth_ruby_client"
-gem 'poodle-rb', '~> 0.2.2'
+gem 'poodle-rb', '~> 0.2.3'
 #gem 'poodle-rb', path: "/Users/kvarma/Projects/QwinixLabs/q-apps/poodle"
 
 # Poodle Dependencies
@@ -74,9 +74,8 @@ group :development, :test do
   gem "quiet_assets"
 end
 
-#gem 'rails_12factor', group: :production
-
 group :it, :staging, :development, :test, :uat, :production do
+
   gem 'ruby-progressbar'
   gem "colorize"
 end
