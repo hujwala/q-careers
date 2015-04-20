@@ -1,6 +1,6 @@
 class Public::BaseController < ApplicationController
 
-  layout 'poodle/public'
+  layout 'public'
   before_filter :set_navs, :parse_pagination_params
 
   def stylesheet_filename
