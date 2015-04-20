@@ -1,56 +1,69 @@
 <%= image_tag("q-careers-white-280px.png", class: "centered mt-20", alt: "Q-Careers Logo", width: "180px") %>
 <div class="cl-30"></div>
 
-<ul>
+<% if @current_user %>
+  <ul>
 
-  <li class="<%= nav_class("user/dashboard") %>">
-    <%= link_to raw("<i class=\"fa fa-dashboard\"></i> Dashboard"), main_app.users_dashboard_url %>
-  </li>
+    <% dashboard_link = content_tag :li, class: nav_class("user/dashboard") do %>
+      <%= link_to raw("<i class=\"fa fa-dashboard\"></i> Dashboard"), main_app.users_dashboard_url %>
+    <% end %>
 
-  <% if @current_user.is_q_careers_admin? %>
-    <li class="<%= nav_class("admin/users") %>">
+    <% users_link = content_tag :li, class: nav_class("admin/users") do %>
       <%= link_to raw("<i class=\"fa fa-globe\"></i> Manage Users"), main_app.admin_users_path %>
-    </li>
-  <% end %>
+    <% end %>
 
-  <% if @current_user.is_recruiter? %>
-    <li class="<%= nav_class("admin/events") %>">
+    <% events_link = content_tag :li, class: nav_class("admin/events") do %>
       <%= link_to raw("<i class=\"fa fa-globe\"></i> Manage Events"), main_app.admin_events_path %>
+    <% end %>
+
+    <% careern_interests_link = content_tag :li, class: nav_class("recruiter/career_interests") do %>
+      <%= link_to raw("<i class=\"fa fa-globe\"></i> Career Interests"), main_app.recruiter_events_path %>
+    <% end %>
+
+    <% registrations_link = content_tag :li, class: nav_class("volunteer/registrations") do %>
+      <%= link_to raw("<i class=\"fa fa-globe\"></i> Registrations"), main_app.volunteer_events_path %>
+    <% end %>
+
+    <% referrals_link = content_tag :li, class: nav_class("employee/referrals") do %>
+      <%= link_to raw("<i class=\"fa fa-globe\"></i> My Referrals"), main_app.employee_events_path %>
+    <% end %>
+
+    <% case @current_user.q_careers_role %>
+    <% when "q_careers_admin" %>
+      <li class="heading">Admin</li>
+      <%= dashboard_link %>
+      <%= users_link %>
+      <%= events_link %>
+      <%= careern_interests_link %>
+      <%= registrations_link %>
+      <%= referrals_link %>
+    <% when "recruiter" %>
+      <li class="heading">Recruiter</li>
+      <%= dashboard_link %>
+      <%= careern_interests_link %>
+      <%= registrations_link %>
+      <%= referrals_link %>
+    <% when "volunteer" %>
+      <li class="heading">Volunteer</li>
+      <%= dashboard_link %>
+      <%= registrations_link %>
+      <%= referrals_link %>
+    <% else %>
+      <li class="heading">Employee</li>
+      <%= dashboard_link %>
+      <%= referrals_link %>
+    <% end %>
+
+    <li class="heading">My Account</li>
+
+    <li class="<%= nav_class("account/profile") %>">
+      <%= link_to raw("<i class=\"fa fa-user\"></i> My Profile"), QAuthRubyClient.configuration.q_auth_url + QAuthRubyClient.configuration.my_profile_url, target: "_blank" %>
     </li>
-  <% end %>
 
-  <% if @current_user.is_volunteer? %>
-    <li class="<%= nav_class("admin/registrations") %>">
-      <%= link_to raw("<i class=\"fa fa-globe\"></i> Registration Desk"), main_app.admin_events_path %>
+    <li>
+      <%= link_to raw("<i class=\"fa fa-power-off\"></i> Sign Out"), q_auth_ruby_client.sign_out_path, :method => :delete %>
     </li>
-  <% end %>
 
-  <% if @current_user %>
-    <li class="<%= nav_class("admin/recommendations") %>">
-      <%= link_to raw("<i class=\"fa fa-globe\"></i> My Referrals"), main_app.admin_events_path %>
-    </li>
-  <% end %>
-
-  <li class="heading">My Account</li>
-
-  <li class="<%= nav_class("account/profile") %>">
-    <%= link_to raw("<i class=\"fa fa-user\"></i> My Profile"), QAuthRubyClient.configuration.q_auth_url + QAuthRubyClient.configuration.my_profile_url, target: "_blank" %>
-  </li>
-
-  <li>
-    <%= link_to raw("<i class=\"fa fa-power-off\"></i> Sign Out"), q_auth_ruby_client.sign_out_path, :method => :delete %>
-  </li>
-
-  <% if @current_user.is_super_admin? %>
-
-    <!-- <li class="heading">APIS</li>
-
-    <li><%#= link_to raw("<i class=\"fa fa-anchor\"></i> API 1"), "#", :method => :get %></li>
-    <li><%#= link_to raw("<i class=\"fa fa-anchor\"></i> API 2"), "#", :method => :get %></li>
-    <li><%#= link_to raw("<i class=\"fa fa-anchor\"></i> API 3"), "#", :method => :get %></li>
-    <li><%#= link_to raw("<i class=\"fa fa-anchor\"></i> API 4"), "#", :method => :get %></li> -->
-
-  <% end %>
-
-</ul>
+  </ul>
+<% end %>
 

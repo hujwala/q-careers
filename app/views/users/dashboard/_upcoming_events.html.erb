@@ -1,0 +1,4 @@
+<% events = Event.upcoming_events %>
+<% events.each do |event| %>
+  <%= render partial: "event_item", locals: {event: event} %>
+<% end %>

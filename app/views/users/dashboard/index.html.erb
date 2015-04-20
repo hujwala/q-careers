@@ -1,11 +1,6 @@
-Welcome !!!
-<div class="row">
-	<div class="col-md-6">
-		<%#* Display Projects -%>
-    	<%#= render :partial=>"user/dashboard/widgets/projects" -%>
-	</div>
-	<div class="col-md-6">
-		<%#* Display Tickets -%>
-    	<%#= render :partial=>"user/dashboard/widgets/tickets" -%>
-	</div>
-</div>
+<% if @event %>
+  <%#* Display Latest Event Dashboard -%>
+  <%= render :partial=>"users/dashboard/event_dashboard" -%>
+<% else %>
+  <%= render :partial=>"users/dashboard/user_dashboard" -%>
+<% end %>

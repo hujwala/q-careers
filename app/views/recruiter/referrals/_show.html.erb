@@ -1,0 +1,14 @@
+<%= flash_message if request.xhr? -%>
+
+<% download_link = main_app.download_recruiter_event_referral_path(@event, @referral) %>
+
+<%= render partial: "common/candidate/show", locals: {career_interest: @referral, candidate: @referral.candidate, download_link: download_link}  %>
+
+<%= theme_more_widget(@referral.candidate,
+          data_columns: [:id, :type, :created_at, :updated_at],
+          super_admin: true) %>
+
+
+
+
+

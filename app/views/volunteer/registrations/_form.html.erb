@@ -1,0 +1,52 @@
+<% if @candidate.new_record? %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    Search Candidates ...
+  </div>
+  <div class="panel-body" style="height:auto;">
+    <%= theme_search_form(CareerInterest, main_app.search_volunteer_event_registrations_path(@event), :get, true, "Search!", "Search Candidates") %>
+  </div>
+</div>
+<% end %>
+
+<% method = @candidate.new_record? ? :post : :put %>
+<% path = @candidate.new_record? ? main_app.volunteer_event_registrations_path(@event) : main_app.volunteer_event_registration_path(@event, @registration) %>
+
+<%= form_for(@candidate, url: path, :html => {:id=>"form_registration", :class=>"mb-0 form-horizontal", :role => "form", :method => method, multipart: true, remote: true}) do |f| %>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      Application Form
+    </div>
+    <div class="panel-body" style="height:auto;">
+
+      <div id="event_form_error">
+        <%= @candidate.errors[:base].to_sentence %>
+      </div>
+
+      <div class="form-inputs mb-30 mt-30">
+
+        <%= theme_form_field(@candidate, :name) %>
+        <%= theme_form_field(@candidate, :email) %>
+        <%= theme_form_field(@candidate, :phone) %>
+        <%= theme_form_field(@candidate, :current_city) %>
+        <%= theme_form_field(@candidate, :native_city) %>
+
+        <%= f.fields_for :candidate do |c| %>
+          <% options_list = Array[*Fresher::YEAR_OF_PASSING_LIST.collect {|v,i| [v,v] }].sort %>
+          <%= theme_form_select_group(c, @candidate, :year_of_passing, options_list, label: "Year of Passing", param_name: "registration[year_of_passing]", prompt: true) %>
+        <% end %>
+
+      </div>
+
+    </div>
+
+    <div class="panel-footer clearfix">
+      <div class="pull-right">
+        <%= link_to "Cancel", path, class: "btn btn-default", remote: true %>
+        <%= theme_form_button(@registration, "Submit the Form") %>
+      </div>
+    </div>
+  </div>
+<% end %>
+

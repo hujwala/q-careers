@@ -1,0 +1,10 @@
+<%# Displays list of @registrations %>
+<% @registrations.each do |registration| %>
+  <% item_link = volunteer_event_registration_path(@event, registration) %>
+  <div id="div_registration_<%= registration.id %>">
+    <%= render :partial=>"common/candidate/item", :locals=>{:candidate=>registration.candidate, career_interest: registration, item_link: item_link} %>
+  </div>
+<% end %>
+<%= theme_panel_message(I18n.translate("forms.no_results")) if @registrations.blank? %>
+
+<%= theme_paginate(@registrations) %>

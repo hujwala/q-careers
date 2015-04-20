@@ -1,0 +1,12 @@
+<% if @registrations.any? %>
+	// Fill the right box with first registration details in the list
+	$('#div_registration_details').html("<%= escape_javascript(render(:partial=>'show')) %>");
+
+	// Rendering the item list
+	$('#div_registration_index').html("<%= escape_javascript(render(:partial=>"index")) %>");
+	// $('#div_registration_drop_down').html("<%#= escape_javascript(theme_drop_down(@registrations, :applicant_name)) %>");
+<% else %>
+	var noResultsText = "<%= escape_javascript(theme_panel_message(I18n.translate('forms.no_results')))%>";
+	$('#div_registration_index').html(noResultsText);
+	$('#div_registration_details').html(noResultsText);
+<% end %>

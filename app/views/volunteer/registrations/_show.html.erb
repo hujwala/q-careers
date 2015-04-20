@@ -1,0 +1,17 @@
+<%= flash_message if request.xhr? -%>
+<%
+  edit_link = edit_volunteer_event_registration_path(@event, @registration)
+  delete_link = volunteer_event_registration_path(@event, @registration)
+  download_link = main_app.download_volunteer_event_registration_path(@event, @registration)
+%>
+
+<%= render partial: "common/candidate/show", locals: {career_interest: @registration, candidate: @registration.candidate, edit_link: edit_link, delete_link: delete_link, download_link: download_link}  %>
+
+<%= theme_more_widget(@registration.candidate,
+          data_columns: [:id, :type, :created_at, :updated_at],
+          super_admin: true) %>
+
+
+
+
+

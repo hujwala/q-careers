@@ -1,0 +1,35 @@
+<div class="panel panel-default">
+  <div class="panel-body" style="height:auto;">
+    <div class="pull-left" style="width:32%;">
+      <div style="background-color:grey;color:white;font-size:24px;padding:10px;">
+        <%= career_interest.application_id %>
+      </div>
+    </div>
+    <div class="pull-left ml-10" style="width:58%;">
+      <%= theme_panel_heading(candidate.name) %>
+      <%= theme_panel_sub_heading("#{candidate.year_of_passing} Graduate", "#") %>
+    </div>
+    <%= clear_tag(20) %>
+    <table class="table table-condensed table-hover table-striped mt-20">
+      <tbody>
+        <% ["email", "phone", "current_city", "native_city",  "year_of_passing", "experience_in_years"].each do |attribute| %>
+          <tr class="text-color-gray">
+            <td class="bold"><%= attribute.split("_").map{|x| x.capitalize}.join(" ") %></td>
+            <td><%= candidate.send(attribute) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= clear_tag(20) %>
+
+    <%= link_to("Download CV", download_link, class: "btn btn-primary btn-xs pull-left") if candidate.resume.present? && defined?(download_link) && download_link  %>
+    <%= theme_edit_button(edit_link) if defined?(edit_link) && edit_link %>
+    <%= theme_delete_button(delete_link) if defined?(delete_link) && delete_link %>
+    <%= clear_tag(10) %>
+
+  </div>
+</div>
+
+
+
+

@@ -1,9 +1,0 @@
-<%# Displays list of @career_interests %>
-<% @career_interests.each do |career_interest| %>
-  <div id="div_career_interest_<%= career_interest.id %>">
-    <%= render :partial=>"item", :locals=>{:career_interest=>career_interest} %>
-  </div>
-<% end %>
-<%= theme_panel_message(I18n.translate("forms.no_results")) if @career_interests.blank? %>
-
-<%= theme_paginate(@career_interests) %>

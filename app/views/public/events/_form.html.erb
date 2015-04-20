@@ -1,4 +1,4 @@
-<%= form_for([main_app, :apply, :public, @event], :html => {:id=>"form_event", :class=>"mb-0 form-horizontal", :role => "form", :method => :post, multipart: true}) do |f| %>
+<%= form_for(@fresher, url: apply_public_event_path(@event), :html => {:id=>"form_application", :class=>"mb-0 form-horizontal", :role => "form", :method => :post, multipart: true}) do |f| %>
 
   <div class="panel panel-default">
     <div class="panel-heading">
@@ -6,7 +6,7 @@
     </div>
     <div class="panel-body" style="height:auto;">
 
-      <div id="event_form_error">
+      <div id="application_form_error">
         <%= @fresher.errors[:base].to_sentence %>
       </div>
 
@@ -20,10 +20,9 @@
 
         <%= f.fields_for :candidate do |c| %>
           <% options_list = Array[*Fresher::YEAR_OF_PASSING_LIST.collect {|v,i| [v,v] }].sort %>
-          <%= theme_form_select_group(c, @fresher, :year_of_passing, options_list, label: "Year of Passing", param_name: "fresher[year_of_passing]", prompt: true) %>
+          <%= theme_form_select_group(c, @fresher, :year_of_passing, options_list, label: "Year of Passing", param_name: "year_of_passing", prompt: true) %>
         <% end %>
 
-        <%= theme_form_field(@fresher, :skills, html_options: {type: 'textarea'}) %>
         <%= theme_form_field(@fresher, :resume, html_options: {type: 'file'}) %>
 
       </div>
@@ -37,4 +36,11 @@
     </div>
   </div>
 <% end %>
+
+<script type="text/javascript">
+  // Javascripts are loaded at the bottom.
+  document.addEventListener("DOMContentLoaded", function(event) {
+    validateApplicationForm();
+  });
+</script>
 

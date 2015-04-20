@@ -17,7 +17,7 @@ class Public::EventsController < Public::BaseController
     @career_interest = CareerInterest.fetch(@event, @fresher)
 
     # FIXME - Params are passed now some odd way.
-    @fresher.year_of_passing = params[:event][:candidate][:fresher][:year_of_passing]
+    @fresher.year_of_passing = params[:fresher][:candidate][:year_of_passing]
     if @fresher.save && @career_interest.save
       redirect_to public_event_career_interest_path(event_id: @event.slug, id: @career_interest.id)
     else
@@ -28,7 +28,7 @@ class Public::EventsController < Public::BaseController
   private
 
   def fresher_params
-    params[:fresher].permit(:name, :email, :phone, :current_city, :native_city, :year_of_passing, :skills, :resume )
+    params[:fresher].permit(:name, :email, :phone, :current_city, :native_city, :year_of_passing, :resume )
   end
 
   def set_navs
