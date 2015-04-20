@@ -20,6 +20,7 @@ class Public::EventsController < Public::BaseController
     # FIXME - Params are passed now some odd way.
     @fresher.year_of_passing = params[:fresher][:candidate][:year_of_passing]
     if @fresher.save && @career_interest.save
+      RegistrationsMailer.online_register(@fresher.email, @career_interest.event_id, @career_interest.id).deliver
       redirect_to public_event_career_interest_path(event_id: @event.slug, id: @career_interest.id)
     else
       render action: :show
