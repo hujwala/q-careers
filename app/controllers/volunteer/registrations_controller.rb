@@ -24,7 +24,7 @@ class Volunteer::RegistrationsController < Poodle::AdminController
     @candidate.year_of_passing = params[:candidate][:candidate][:registration][:year_of_passing]
     @registration = CareerInterest.new(event: @event, candidate: @candidate)
     @candidate.save && @registration.save
-    RegistrationsMailer.registration_desk(@registration).deliver
+    RegistrationsMailer.registration_desk(@registration).deliver_now
   end
 
   def edit
@@ -45,7 +45,11 @@ class Volunteer::RegistrationsController < Poodle::AdminController
 
   def download
     @registration = CareerInterest.find_by_id(params[:id])
-    send_file @registration.candidate.resume.path, :x_sendfile => true
+    if ["production", "staging"].include?(Rails.env)
+      redirect_to @registration.candidate.resume.url
+    else
+      send_file @registration.candidate.resume.path, :x_sendfile => true
+    end
   end
 
   def mark_as_reported

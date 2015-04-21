@@ -7,7 +7,11 @@ class Recruiter::CareerInterestsController < Poodle::AdminController
 
   def download
     @career_interest = CareerInterest.find_by_id(params[:id])
-    send_file @career_interest.candidate.resume.path, :x_sendfile => true
+    if ["production", "staging"].include?(Rails.env)
+      redirect_to @career_interest.candidate.resume.url
+    else
+      send_file @career_interest.candidate.resume.path, :x_sendfile => true
+    end
   end
 
   private
