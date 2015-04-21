@@ -22,7 +22,7 @@
     </table>
     <%= clear_tag(20) %>
 
-    <%= link_to("Download CV", download_link, class: "btn btn-primary btn-xs pull-left") if candidate.resume.present? && defined?(download_link) && download_link  %>
+    <%= link_to("Download CV", download_link, class: "btn btn-primary btn-xs pull-left", target: "_blank") if candidate.resume.present? && defined?(download_link) && download_link  %>
     <%= theme_edit_button(edit_link) if defined?(edit_link) && edit_link %>
     <%= theme_delete_button(delete_link) if defined?(delete_link) && delete_link %>
     <%= clear_tag(10) %>
