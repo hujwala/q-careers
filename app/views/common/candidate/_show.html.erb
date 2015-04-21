@@ -30,6 +30,15 @@
   </div>
 </div>
 
+<%= theme_more_widget(career_interest.candidate,
+          heading: "Candidate Details",
+          data_columns: [:id, :created_at, :updated_at],
+          super_admin: true) %>
+
+<%= theme_more_widget(career_interest,
+          heading: "Career Interest Details",
+          data_columns: [:id, :confirmed, :confirmed_at, :reported, :reported_at, :created_at, :updated_at],
+          super_admin: true) %>
 
 
 

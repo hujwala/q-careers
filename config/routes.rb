@@ -68,6 +68,8 @@ Rails.application.routes.draw do
       resources :registrations do
         member do
           get 'download'
+          put 'mark_as_reported'
+          put 'mark_as_not_reported'
         end
         collection do
           get 'search'

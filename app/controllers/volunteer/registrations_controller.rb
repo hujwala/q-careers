@@ -24,7 +24,7 @@ class Volunteer::RegistrationsController < Poodle::AdminController
     @candidate.year_of_passing = params[:candidate][:candidate][:registration][:year_of_passing]
     @registration = CareerInterest.new(event: @event, candidate: @candidate)
     @candidate.save && @registration.save
-    RegistrationsMailer.volunteer_register(@candidate.email).deliver
+    RegistrationsMailer.registration_desk(@registration).deliver
   end
 
   def edit
@@ -46,6 +46,18 @@ class Volunteer::RegistrationsController < Poodle::AdminController
   def download
     @registration = CareerInterest.find_by_id(params[:id])
     send_file @registration.candidate.resume.path, :x_sendfile => true
+  end
+
+  def mark_as_reported
+    @registration = CareerInterest.find_by_id(params[:id])
+    @candidate = @registration.candidate
+    @registration.report!
+  end
+
+  def mark_as_not_reported
+    @registration = CareerInterest.find_by_id(params[:id])
+    @candidate = @registration.candidate
+    @registration.cancel_report!
   end
 
   private

@@ -18,6 +18,32 @@
 
     <div class="cl-20"></div>
 
+    <table class="table table-condensed table-hover table-striped">
+      <thead>
+        <tr>
+          <th>Attribute</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <% [:slug, :start_time, :end_time, :map_link, :contact_person, :contact_number].each do |attribute| %>
+        <tr class="text-color-gray">
+          <td class="bold"><%= attribute %></td>
+          <% if attribute == :map_link %>
+            <td><%= link_to "Map Link", @event.send(attribute) %></td>
+          <% else %>
+            <td><%= @event.send(attribute) %></td>
+          <% end %>
+
+        </tr>
+        <% end %>
+
+      </tbody>
+    </table>
+
+    <div class="cl-20"></div>
+
     <%= link_to("Checkout Event Page", "/public/events/#{@event.slug}", class: "btn btn-info btn-xs", target: "_blank") %>
     <%= theme_edit_button(main_app.edit_admin_event_path(@event)) %>
     <%= theme_delete_button(main_app.admin_event_path(@event)) %>
@@ -26,6 +52,7 @@
 </div>
 
 <%= theme_more_widget(@event,
+          heading: "Event Details",
           data_columns: [:id, :slug, :created_at, :updated_at],
           super_admin: true) %>
 

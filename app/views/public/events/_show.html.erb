@@ -16,7 +16,7 @@
     </div>
     <div class="pull-left ml-10" style="width:100%;">
       <%= link_to theme_panel_heading(event.name), main_app.public_event_path(id: event.slug), target: "_blank" %>
-      <%= theme_panel_sub_heading(stringify_date(event.date), "#") if event.date %>
+      <%= theme_panel_sub_heading(stringify_date(event.date), "#") if event.date && event.slug != 'qwinix-careers' %>
       <%= theme_panel_description(event.venue) %>
       <%= clear_tag(10) %>
       <%= theme_panel_description(event.description, "fs-14 mt-10 text-color-gray") %>

@@ -6,24 +6,23 @@ class Public::CareerInterestsController < Public::BaseController
   end
 
   def create
-      @career_interest = CareerInterest.new
-      @career_interest.assign_attributes(permitted_params)
-      @career_interest.source = :registration_desk
-      save_resource(@career_interest)
-    end
+    @career_interest = CareerInterest.new
+    @career_interest.assign_attributes(permitted_params)
+    @career_interest.source = :registration_desk
+    save_resource(@career_interest)
+  end
 
   def confirm
-    if @career_interest.confirm!
-      redirect_to public_event_career_interest_path(@career_interest)
-    else
-      render action: :show, notice: "Some Error!"
+    unless @career_interest.confirm!
+      flash[:error] = "Unknown error while confirming"
     end
+    redirect_to public_event_career_interest_path(event_id: @event.slug, id: @career_interest.id)
   end
 
   private
 
   def get_details
-    @event = Event.find_by_slug(params[:event_id])
+    @event = Event.find_by_slug(params[:event_id]) || Event.find_by_id(params[:event_id])
     @career_interest = CareerInterest.find_by_id(params[:id])
     @fresher = @career_interest.candidate
   end

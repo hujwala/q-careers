@@ -29,4 +29,7 @@ img.centered {
 	padding-top: 10px;
 	padding-bottom: 10px;
 }
-.header a{ margin: 20px 0px 0px 10px; }
+.header a.logo{ margin: 2px 0px 0px 10px; }
+
+.upcoming {background-color: #fcfcf1}
+.qwinix-careers {background-color: #ecfcec}

@@ -18,7 +18,7 @@ gem 'fog'
 gem 'rmagick', :require => 'RMagick'
 gem 'jquery-fileupload-rails'
 gem 'cf-app-utils'
-gem 'rails_12factor'
+gem 'rails_12factor', :group => [:staging, :production]
 
 gem 'jquery-rails'
 #gem 'sass-rails', '~> 5.0'

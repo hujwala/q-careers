@@ -1,0 +1,47 @@
+<% if @career_interest.confirmed? %>
+  <div class="panel panel-default">
+    <div class="panel-body" style="height:auto">
+      <%= clear_tag(10) %>
+      Thank you for confirming your attendance for the event: <strong>'<%= @event.name %>'</strong>.<br/>
+      <% if @event.start_time %>
+        The event starts at <strong><%= @event.start_time %></strong>  and will be held at <strong><%= @event.venue %></strong>.
+      <% end %>
+      <% if @event.map_link %>
+      <%= clear_tag(20) %>
+      <%= link_to "Click Here", @event.map_link, target: "_blank" %> to get directions to the venue (Opens in Google Maps).<br/>
+      <% end %>
+
+      <div class="alert alert-warning mt-20" role="alert">Your Application ID is <strong><%= @career_interest.application_id %></strong>.</div>
+
+      We request you to kindly note down your application id to show at registering desk.
+
+      <% if @event.contact_person && @event.contact_number %>
+      <%= clear_tag(10) %>
+      If you have any questions please contact <strong><%= @event.contact_person %></strong> (<%= @event.contact_number %>).
+      <% end %>
+
+      <%= clear_tag(10) %>
+      Thank you and see you at the event!<br>
+      Qwinix Team
+
+    </div>
+  </div>
+
+<% else %>
+
+  <div class="panel panel-default">
+    <div class="panel-body" style="height:auto">
+      <%= clear_tag(10) %>
+      Thank you for registering for the event: <strong>'<%= @event.name %>'</strong>.<br/>
+
+      <div class="alert alert-warning mt-20" role="alert">
+        You will be receiving an e-mail shorly. Kindly click on the link in the email to <strong>confirm you attending the event.</strong>
+      </div>
+
+      <%= clear_tag(10) %>
+      Thank you and see you at the event!<br>
+      Qwinix Team
+    </div>
+  </div>
+
+<% end %>

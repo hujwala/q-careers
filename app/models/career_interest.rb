@@ -41,6 +41,14 @@ class CareerInterest < ActiveRecord::Base
     update_attributes(confirmed: true, confirmed_at: Time.now)
   end
 
+  def report!
+    update_attributes(reported: true, reported_at: Time.now)
+  end
+
+  def cancel_report!
+    update_attributes(reported: false, reported_at: nil)
+  end
+
   def applicant_name
     candidate.name
   end

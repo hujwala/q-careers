@@ -1,12 +1,57 @@
 <% item_link = "#" unless defined?(item_link) %>
-<div class="panel panel-default media p-5">
-  <div class="pull-left" style="background-color:grey;color:white;font-size:24px;padding:10px;">
-    <%= career_interest.application_id %>
-  </div>
-  <div class="pull-left ml-10">
-    <%= theme_item_title(candidate.name, item_link) %>
-    <%= theme_item_sub_title("#{candidate.year_of_passing} Graduate") %>
-    <%= theme_item_description("#{candidate.current_city} (#{candidate.native_city})") %>
+<% display_reported = false unless defined?(display_reported) %>
+<%
+  if career_interest.confirmed?
+    confirmed_color = "success"
+    confirmed_label = "Confirmed"
+  else
+    confirmed_color = "danger"
+    confirmed_label = "Not Confirmed"
+  end
+
+  if career_interest.reported?
+    reported_color = "success"
+    reported_label = "Reported"
+  else
+    reported_color = "danger"
+    reported_label = "Not Reported"
+  end
+%>
+
+<div class="panel panel-default p-5">
+  <div class="row">
+    <div class="col-sm-4" style="padding-right: 0px">
+      <div style="background-color:grey;color:white;font-size:20px;padding:5px;">
+        <%= career_interest.application_id %>
+      </div>
+
+      <%= clear_tag(5) %>
+      <span class="mr-10 label label-<%= confirmed_color %>">
+        <%= confirmed_label %>
+      </span>
+
+      <span class="mr-10 label label-<%= reported_color %>">
+        <%= reported_label %>
+      </span>
+
+      <% if display_reported && current_user.is_volunteer? %>
+        <% if career_interest.reported? %>
+          <%= link_to "Cancel Reported", mark_as_not_reported_volunteer_event_registration_path(career_interest.event, career_interest), class: "mt-5 btn btn-xs btn-warning", remote: true, method: :put %>
+        <% else %>
+          <%= link_to "Mark as Reported", mark_as_reported_volunteer_event_registration_path(career_interest.event, career_interest), class: "mt-5 btn btn-xs btn-success", remote: true, method: :put %>
+        <% end %>
+      <% end %>
+
+    </div>
+
+    <div class="col-sm-8" style="padding-right: 0px">
+      <%= theme_item_title(candidate.name, item_link) %>
+      <%= theme_item_sub_title(candidate.email) %>
+      <%= theme_item_sub_title(candidate.phone) %>
+
+      <%= theme_item_description("#{candidate.year_of_passing} Graduate") %>
+      <%= theme_item_description("#{candidate.current_city} (#{candidate.native_city})") %>
+    </div>
   </div>
   <%= clear_tag(10) %>
 </div>

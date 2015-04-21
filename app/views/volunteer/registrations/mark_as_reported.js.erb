@@ -1,0 +1,3 @@
+// Fill the right box with registration details
+<% item_link = volunteer_event_registration_path(@event, @registration) %>
+$("#div_registration_<%= @registration.id %>").html("<%= escape_javascript(render :partial => 'common/candidate/item', :locals => { candidate: @candidate, career_interest: @registration, item_link: item_link }) %>")

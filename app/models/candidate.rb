@@ -21,20 +21,6 @@ class Candidate < ActiveRecord::Base
   # File Uploader Method Hook
   mount_uploader :resume, ResumeUploader
 
-  # Class Methods
-  # -------------
-
-  # * Return candidate which matches the email else will build a new one with the passed email
-  # == Examples
-  #   >>> Candidate.fetch("some@email.com")
-  #   >>> Experienced.fetch("some@email.com")
-  #   => <Candidate Active Record Object>
-  def self.fetch(params)
-    candidate = Candidate.find_by_email(params[:email]) if params[:email]
-    candidate = Candidate.new(params) unless candidate
-    candidate
-  end
-
   # Instance Methods
   # ----------------
 

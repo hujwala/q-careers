@@ -8,10 +8,6 @@
 
 <%= render partial: "common/candidate/show", locals: {career_interest: @referral, candidate: @referral.candidate, edit_link: edit_link, delete_link: delete_link, download_link: download_link}  %>
 
-<%= theme_more_widget(@referral.candidate,
-          data_columns: [:id, :type, :created_at, :updated_at],
-          super_admin: true) %>
-
 
 
 

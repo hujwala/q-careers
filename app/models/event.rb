@@ -25,7 +25,7 @@ class Event < ActiveRecord::Base
   # ----------------
 
   def self.upcoming_events
-    Event.where("date >= ?", Date.today)
+    Event.where("slug != ?", 'qwinix-careers').where("date >= ?", Date.today).order("date asc")
   end
 
   # ----------------

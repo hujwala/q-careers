@@ -4,10 +4,6 @@
 
 <%= render partial: "common/candidate/show", locals: {career_interest: @career_interest, candidate: @career_interest.candidate, download_link: download_link}  %>
 
-<%= theme_more_widget(@career_interest.candidate,
-          data_columns: [:id, :type, :created_at, :updated_at],
-          super_admin: true) %>
-
 
 
 

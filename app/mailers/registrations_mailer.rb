@@ -1,21 +1,26 @@
 class RegistrationsMailer < ActionMailer::Base
 
-	default from: "infoinspired11@gmail.com"
+	default from: "careers@qwinixtech.com"
 
-	def online_register(to_email, event_id, careers_interest_id)
-		@to_email = to_email
-		@event_id = event_id
-		@careers_interest_id = careers_interest_id
-		mail(:to=> to_email, :subject=>"Welcome to Qwinix Careers")
+	def online_registration(careers_interest)
+		@careers_interest = careers_interest
+		receiver = @careers_interest.candidate.email
+		@event = @careers_interest.event
+		mail(:to=> receiver, :subject=>"Qwinix Careers: #{@event.name}")
 	end
 
-	def volunteer_register(to_email)
-		@to_email = to_email
-		mail(:to=> to_email, :subject=>"Welcome to Qwinix Careers")
+	def registration_desk(careers_interest)
+		@careers_interest = careers_interest
+		@event = @careers_interest.event
+		receiver = careers_interest.candidate.email
+		mail(:to=> receiver, :subject=>"Qwinix Careers: Kindly upload your resume.")
 	end
 
-	def referrals_register(to_email)
-		@to_email = to_email
-		mail(:to=> to_email, :subject=>"Welcome to Qwinix Careers")
+	def employee_referral(careers_interest)
+		@careers_interest = careers_interest
+		@referrer = careers_interest.referrer
+		@event = @careers_interest.event
+		receiver = careers_interest.candidate.email
+		mail(:to=> receiver, :subject=>"Qwinix Careers: You have been referred")
 	end
 end

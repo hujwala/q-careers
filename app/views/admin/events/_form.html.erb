@@ -12,18 +12,18 @@
 
       <div class="form-inputs mb-30 mt-30">
 
-        <%# Name (string)  %>
         <%= theme_form_field(@event, :name) %>
-
-        <%# Slug (string)  %>
         <%= theme_form_field(@event, :slug) %>
 
-        <%# Date (string)  %>
         <% value = @event.date ? @event.date.strftime("%d/%m/%Y") : "" %>
         <%= theme_form_field(@event, :date, html_options: {"data-provide".to_sym => "datepicker", value: value}) %>
 
-        <%# Venue (string)  %>
         <%= theme_form_field(@event, :venue) %>
+        <%= theme_form_field(@event, :start_time) %>
+        <%= theme_form_field(@event, :end_time) %>
+        <%= theme_form_field(@event, :map_link) %>
+        <%= theme_form_field(@event, :contact_person) %>
+        <%= theme_form_field(@event, :contact_number) %>
 
         <%# Description (string)  %>
         <%= theme_form_field(@event, :description, required: false, html_options: {type: 'textarea'}) %>
