@@ -10,6 +10,13 @@
       <%= theme_panel_sub_heading("#{candidate.year_of_passing} Graduate", "#") %>
     </div>
     <%= clear_tag(20) %>
+
+    <% if career_interest.referrer %>
+    <div class="alert alert-info">
+      Referred by: <%= career_interest.referrer.name %>
+    </div>
+    <% end %>
+
     <table class="table table-condensed table-hover table-striped mt-20">
       <tbody>
         <% ["email", "phone", "current_city", "native_city",  "year_of_passing", "experience_in_years"].each do |attribute| %>

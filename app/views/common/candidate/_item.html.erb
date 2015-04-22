@@ -48,9 +48,7 @@
       <%= theme_item_title(candidate.name, item_link) %>
       <%= theme_item_sub_title(candidate.email) %>
       <%= theme_item_sub_title(candidate.phone) %>
-
-      <%= theme_item_description("#{candidate.year_of_passing} Graduate") %>
-      <%= theme_item_description("#{candidate.current_city} (#{candidate.native_city})") %>
+      <%= theme_item_sub_title("Referred By: " + career_interest.referrer.name, "text-color-green fs-14" ) if career_interest.referrer %>
     </div>
   </div>
   <%= clear_tag(10) %>
