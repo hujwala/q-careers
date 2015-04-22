@@ -24,7 +24,10 @@ class Volunteer::RegistrationsController < Poodle::AdminController
     @candidate.year_of_passing = params[:candidate][:candidate][:registration][:year_of_passing]
     @registration = CareerInterest.new(event: @event, candidate: @candidate)
     @candidate.save && @registration.save
-    RegistrationsMailer.registration_desk(@registration).deliver_now
+    begin
+      RegistrationsMailer.registration_desk(@registration).deliver_now
+    rescue
+    end
   end
 
   def edit

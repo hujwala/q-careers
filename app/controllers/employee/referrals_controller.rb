@@ -17,7 +17,10 @@ class Employee::ReferralsController < Poodle::AdminController
 
     if @candidate.save && @referral.save
       flash[:success] = "Successfully saved the data."
-      RegistrationsMailer.employee_referral(@referral).deliver_now
+      begin
+        RegistrationsMailer.employee_referral(@referral).deliver_now
+      rescue
+      end
       redirect_to employee_event_referral_path(@event, @referral)
     else
       flash[:error] = "Error! The email/phone is already registered with us."
