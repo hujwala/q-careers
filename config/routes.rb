@@ -107,4 +107,12 @@ Rails.application.routes.draw do
     end
   end
 
+  # ------------
+  # Reports
+  # ------------
+
+  get   '/reports/registrations',         to: "reports#registrations",   as:  :registrations_report
+  
+
+
 end

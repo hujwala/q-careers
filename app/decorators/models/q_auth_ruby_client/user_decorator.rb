@@ -19,4 +19,16 @@ QAuthRubyClient::User.class_eval do
     ["q_careers_admin", "recruiter", "volunteer"].include?(self.q_careers_role)
   end
 
+  def make_volunteer
+    self.update_attribute :q_careers_role, "volunteer"
+  end
+
+  def make_recruiter
+    self.update_attribute :q_careers_role, "recruiter"
+  end
+
+  def make_admin
+    self.update_attribute :q_careers_role, "q_careers_admin"
+  end
+
 end

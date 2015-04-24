@@ -24,6 +24,9 @@ class Recruiter::ReferralsController < Poodle::AdminController
     @filters[:year_of_passing] = params[:year_of_passing] unless params[:year_of_passing].blank?
     @filters[:current_city] = params[:current_city] unless params[:current_city].blank?
     @filters[:native_city] = params[:native_city] unless params[:native_city].blank?
+    @filters[:confirmation] = params[:confirmation] unless params[:confirmation].blank?
+    @filters[:reporting] = params[:reporting] unless params[:reporting].blank?
+    @filters[:referrer_id] = params[:referrer_id] unless params[:referrer_id].blank?
   end
 
   def prepare_query
@@ -36,6 +39,9 @@ class Recruiter::ReferralsController < Poodle::AdminController
     @relation = @relation.where("candidates.year_of_passing = ?", @filters[:year_of_passing]) if @filters[:year_of_passing]
     @relation = @relation.where("candidates.current_city = ?", @filters[:current_city]) if @filters[:current_city]
     @relation = @relation.where("candidates.native_city = ?", @filters[:native_city]) if @filters[:native_city]
+    @relation = @relation.where("career_interests.confirmed = ? ", @filters[:confirmation] == "Confirmed") if @filters[:confirmation]
+    @relation = @relation.where("career_interests.reported = ? ", @filters[:reporting] == "Reported") if @filters[:reporting]
+    @relation = @relation.where("career_interests.referrer_id = ? ", @filters[:referrer_id]) if @filters[:referrer_id]
   end
 
   def default_collection_name

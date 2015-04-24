@@ -8,23 +8,67 @@
 
 <div class="row mt-20">
   <div class="col-sm-4">
-    <div class="panel panel-default p-10 text-color-gray" style="height:240px;text-align:center;">
+    <div class="panel panel-default p-10 text-color-gray" style="height:auto;text-align:center;">
       <div class="text-color-green" style="font-size:100px;"><%= applications_count  %></div>
       <%= link_to "Online Applications", recruiter_event_career_interests_path(@event), style: "font-size: 28px; color: grey" %>
+
+      <table class="table table-condensed table-hover table-striped mt-20">
+        <tr></tr>
+        <% 
+          confirmed = @event.applications.where("confirmed is true").count
+          not_confirmed = @event.applications.where("confirmed is not true").count
+          reported = @event.applications.where("reported is true").count
+          not_reported = @event.applications.where("reported is not true").count
+        %>
+        <tr><td>Confirmed</td><td><%= confirmed %></td></tr>
+        <tr><td>Not Confirmed</td><td><%= not_confirmed %></td></tr>
+        <tr><td>Reported</td><td><%= reported %></td></tr>
+        <tr><td>Not Reported</td><td><%= not_reported %></td></tr>
+      </table>
+
     </div>
   </div>
 
   <div class="col-sm-4">
-    <div class="panel panel-default p-10 text-color-gray" style="height:240px;text-align:center;">
+    <div class="panel panel-default p-10 text-color-gray" style="height:auto;text-align:center;">
       <div class="text-color-green" style="font-size:100px;"><%= registrations_count %></div>
       <%= link_to "Registrations", volunteer_event_registrations_path(@event), style: "font-size: 28px; color: grey" %>
+
+      <table class="table table-condensed table-hover table-striped mt-20">
+        <tr></tr>
+        <% 
+          confirmed = @event.registrations.where("confirmed is true").count
+          not_confirmed = @event.registrations.where("confirmed is not true").count
+          reported = @event.registrations.where("reported is true").count
+          not_reported = @event.registrations.where("reported is not true").count
+        %>
+        <tr><td>Confirmed</td><td><%= confirmed %></td></tr>
+        <tr><td>Not Confirmed</td><td><%= not_confirmed %></td></tr>
+        <tr><td>Reported</td><td><%= reported %></td></tr>
+        <tr><td>Not Reported</td><td><%= not_reported %></td></tr>
+      </table>
+
     </div>
   </div>
 
   <div class="col-sm-4">
-    <div class="panel panel-default p-10 text-color-gray" style="height:240px;text-align:center;">
+    <div class="panel panel-default p-10 text-color-gray" style="height:auto;text-align:center;">
       <div class="text-color-green" style="font-size:100px;"><%= referrals_count  %></div>
       <%= link_to "Employee Referrals", recruiter_event_referrals_path(@event), style: "font-size: 28px; color: grey" %>
+
+      <table class="table table-condensed table-hover table-striped mt-20">
+        <tr></tr>
+        <% 
+          confirmed = @event.referrals.where("confirmed is true").count
+          not_confirmed = @event.referrals.where("confirmed is not true").count
+          reported = @event.referrals.where("reported is true").count
+          not_reported = @event.referrals.where("reported is not true").count
+        %>
+        <tr><td>Confirmed</td><td><%= confirmed %></td></tr>
+        <tr><td>Not Confirmed</td><td><%= not_confirmed %></td></tr>
+        <tr><td>Reported</td><td><%= reported %></td></tr>
+        <tr><td>Not Reported</td><td><%= not_reported %></td></tr>
+      </table>
     </div>
   </div>
 </div>

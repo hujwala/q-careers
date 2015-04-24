@@ -23,7 +23,8 @@ class Employee::ReferralsController < Poodle::AdminController
       end
       redirect_to employee_event_referral_path(@event, @referral)
     else
-      flash[:error] = "Error! The email/phone is already registered with us."
+      error = "#{@candidate.errors.full_messages}. #{@referral.errors.full_messages}"
+      flash[:error] = "The email/phone is already registered with us. Error Details! #{error}"
       redirect_to employee_event_referrals_path(@event)
     end
   end

@@ -54,6 +54,12 @@
       <%= referrals_link %>
     <% end %>
 
+    <li class="heading">Reports</li>
+    <li class="<%= nav_class("reports") %>">
+      <%= link_to raw("<i class=\"fa fa-user\"></i> Registration Report"), registrations_report_path %>
+    </li>
+
+    
     <li class="heading">My Account</li>
 
     <li class="<%= nav_class("account/profile") %>">

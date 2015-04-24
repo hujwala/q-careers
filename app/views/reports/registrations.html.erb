@@ -1,0 +1,24 @@
+
+<%= theme_heading("Registrations Report") %>
+
+<table class="table table-condensed table-hover table-striped mt-20">
+  <tr>
+  	<th>Number</th>
+  	<th>Code</th>
+  	<th>Name</th>
+  	<th>Referred By</th>
+  	<th>Reported At</th>
+  </tr>
+  <% i = @total_count %>
+  <% @career_interests.each do |ci| %>
+  <% candidate = ci.candidate %>
+	  <tr>
+	  	<td><%= i %></td>
+	  	<td><%= ci.application_id %></td>
+	  	<td><%= candidate.name %></td>
+	  	<td><%= ci.referrer.name if ci.referrer %></td>
+	  	<td><%= ci.reported_at.in_time_zone('Chennai').strftime("%m/%d/%Y - %I:%M%p") if ci.reported_at %></td>
+	  </tr>
+	  <% i = i-1 %>
+	 <% end %>
+</table>

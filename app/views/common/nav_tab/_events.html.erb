@@ -15,7 +15,7 @@
 <%= clear_tag(20) %>
 <ul class="nav nav-tabs">
   <%= content_tag(:li, role: :presentation, class: ci_class) do %>
-    <%= link_to("Online Applicatons (#{applications})", recruiter_event_career_interests_path(@event))%>
+    <%= link_to("Online Applications (#{applications})", recruiter_event_career_interests_path(@event))%>
   <% end if can_view_applications %>
   <%= content_tag(:li, role: :presentation, class: rg_class) do %>
     <%= link_to("Registrations (#{registrations})", volunteer_event_registrations_path(@event))%>

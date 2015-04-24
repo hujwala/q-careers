@@ -1,31 +1,30 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-    Filter Referrals
+    Filter Applicants
   </div>
 
-  <%= form_for(main_app.employee_event_referrals_path(@event), :html => {:id=>"form_career_event_filters", :class=>"mb-0 form-horizontal", :role => "form", :method => :get, :remote=>true}) do |f| %>
+  <%= form_for(main_app.recruiter_event_career_interests_path(@event), :html => {:id=>"form_career_event_filters", :class=>"mb-0 form-horizontal", :role => "form", :method => :get, :remote=>true}) do |f| %>
 
     <div class="panel-body">
       <div class="form-inputs">
 
         <div class="row">
           <div class="col-sm-6">
-            <% options_list = Array[*Fresher::YEAR_OF_PASSING_LIST.collect {|v,i| [v,v] }].sort %>
+            <% options_list = Array[*Fresher::YEAR_OF_PASSING_LIST.collect {|v,i| [v,i] }].sort %>
             <%= theme_form_group("Graduation Year", required: false) do %>
               <%= select_tag("year_of_passing", options_for_select(options_list, @filters[:year_of_passing]), :class=>"form-control pull-left filter-select", :prompt => "All") %>
             <% end %>
-            <%#= hidden_field_tag :year_of_passing, @filters[:year_of_passing] %>
           </div>
 
           <div class="col-sm-6">
-            <% city_list = Candidate.pluck("DISTINCT current_city")
-              options_list = Array[*city_list.collect {|v,i| [v,v] }].sort %>
-            <%= theme_form_group("Current City", required: false) do %>
-              <%= select_tag("current_city", options_for_select(options_list, @filters[:current_city]), :class=>"form-control pull-left filter-select", :prompt => "All") %>
+            <% options_list = CareerInterest.joins(:referrer).pluck("DISTINCT users.name, users.id")
+            <%= theme_form_group("Referred By", required: false) do %>
+              <%= select_tag("referrer_id", options_for_select(list, @filters[:referrer_id]), :class=>"form-control pull-left filter-select", :prompt => "All") %>
             <% end %>
-            <%#= hidden_field_tag :current_city, @filters[:current_city] %>
           </div>
+        </div>
 
+        <div class="row">
           <div class="col-sm-6">
             <% city_list = Candidate.pluck("DISTINCT native_city")
               options_list = Array[*city_list.collect {|v,i| [v,v] }].sort %>
@@ -34,6 +33,33 @@
             <% end %>
             <%#= hidden_field_tag :native_city, @filters[:native_city] %>
           </div>
+
+          <div class="col-sm-6">
+            <% list = ["Confirmed", "Not Confirmed"]
+              options_list = Array[*list.collect {|v,i| [v,v] }].sort %>
+            <%= theme_form_group("Confirmation Status", required: false) do %>
+              <%= select_tag("confirmation", options_for_select(options_list, @filters[:confirmation]), :class=>"form-control pull-left filter-select", :prompt => "All") %>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-6">
+            <% city_list = Candidate.pluck("DISTINCT current_city")
+              options_list = Array[*city_list.collect {|v,i| [v,v] }].sort %>
+            <%= theme_form_group("Current City", required: false) do %>
+              <%= select_tag("current_city", options_for_select(options_list, @filters[:current_city]), :class=>"form-control pull-left filter-select", :prompt => "All") %>
+            <% end %>
+            <%#= hidden_field_tag :current_city, @filters[:current_city] %>
+          </div>
+          
+          <div class="col-sm-6">
+            <% list = ["Reported", "Not Reported"]
+              options_list = Array[*list.collect {|v,i| [v,v] }].sort %>
+            <%= theme_form_group("Reporting Status", required: false) do %>
+              <%= select_tag("reporting", options_for_select(options_list, @filters[:reporting]), :class=>"form-control pull-left filter-select", :prompt => "All") %>
+            <% end %>
+          </div>
         </div>
 
       </div>
@@ -41,11 +67,11 @@
 
     <div class="panel-footer clearfix">
       <div class="pull-left">
-      <%= link_to "Clear All Filters", main_app.volunteer_event_registrations_path(@event), class: "btn btn-default" %>
+      <%= link_to "Clear All Filters", main_app.recruiter_event_career_interests_path(@event), class: "btn btn-default" %>
       </div>
       <div class="pull-right">
-        <a onclick="$('#div_referral_filters').toggle()" class="btn btn-default">Cancel</a>
-        <%= theme_form_button(@registration, "Apply") %>
+        <a onclick="$('#div_career_interest_filters').toggle()" class="btn btn-default">Cancel</a>
+        <%= theme_form_button(@career_interest, "Apply") %>
       </div>
     </div>
 
