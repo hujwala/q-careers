@@ -112,6 +112,7 @@ Rails.application.routes.draw do
   # ------------
 
   get   '/reports/registrations',         to: "reports#registrations",   as:  :registrations_report
+  get   '/reports/referrals',         to: "reports#referrals",   as:  :referrals_report
   
 
 

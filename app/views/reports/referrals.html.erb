@@ -1,0 +1,21 @@
+
+<%= theme_heading("Referrals Report") %>
+
+<table class="table table-condensed table-hover table-striped mt-20">
+  <tr>
+  	<th>Number</th>
+  	<th>Employee Name</th>
+  	<th>Total Referrals</th>
+  	<th>Confirmed</th>
+  	<th>Reported</th>
+  </tr>
+  <% @career_interests.each_with_index do |ci, i| %>
+	  <tr>
+	  	<td><%= i %></td>
+      <td><%= ci.name %></td>
+      <td><%= ci.total_count %></td>
+      <td><%= ci.confirmed_count %></td>
+      <td><%= ci.reported_count %></td>
+	  </tr>
+	 <% end %>
+</table>
