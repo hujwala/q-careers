@@ -17,7 +17,7 @@
           </div>
 
           <div class="col-sm-6">
-            <% options_list = CareerInterest.joins(:referrer).pluck("DISTINCT users.name, users.id")
+            <% list = CareerInterest.joins(:referrer).pluck("DISTINCT users.name, users.id") %>
             <%= theme_form_group("Referred By", required: false) do %>
               <%= select_tag("referrer_id", options_for_select(list, @filters[:referrer_id]), :class=>"form-control pull-left filter-select", :prompt => "All") %>
             <% end %>
