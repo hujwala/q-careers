@@ -18,7 +18,8 @@ class Recruiter::EventsController < Poodle::AdminController
   end
 
   def prepare_query
-    @relation = Event.upcoming_events
+    # .where("date >= ?", Date.today)
+    @relation = Event.where("slug != ?", 'qwinix-careers').order("date asc")
     if params[:query]
       @query = params[:query].strip
       @relation = @relation.search(@query) if !@query.blank?
