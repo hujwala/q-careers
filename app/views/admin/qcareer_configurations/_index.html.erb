@@ -1,0 +1,9 @@
+<%# Displays list of @events %>
+<% @qcareer_configurations.each do |qcareer_configuration| %>
+  <div id="div_qcareer_configuration_<%= qcareer_configurationsevent.id %>">
+    <%= render :partial=>"item", :locals=>{:qcareer_configuration=>qcareer_configuration} %>
+  </div>
+<% end %>
+<%= theme_panel_message(I18n.translate("forms.no_results")) if @qcareer_configurations.blank? %>
+
+<%= theme_paginate(@qcareer_configurations) %>

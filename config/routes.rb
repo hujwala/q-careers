@@ -46,6 +46,7 @@ Rails.application.routes.draw do
       end
     end
     resources :events
+    resources :qcareer_configurations
   end
 
   namespace :recruiter do

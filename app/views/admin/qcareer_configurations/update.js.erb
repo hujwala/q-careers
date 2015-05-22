@@ -1,0 +1,17 @@
+<% if @career_configuration.errors.blank? %>
+	// Fill the right box with first item details
+  $('#div_career_configuration_details').html("<%= escape_javascript(render(:partial=>"show")) %>");
+
+  // Refresh the updated item in the list
+  $("#div_career_configuration_<%= @career_configuration.id %>").html("<%= escape_javascript(render :partial => 'item', :locals => { :career_configuration => @career_configuration }) %>")
+  $(".panel-message").hide();
+<% else %>
+  $('#div_career_configuration_details').html("<%= escape_javascript(render(:partial=>'form')) %>");
+
+  // Populate Server Side Errors
+  <%
+    text = "You have few errors. They have been highlighted."
+    error_message = content_tag(:div, text, class: "alert alert-danger")
+  %>
+  $("#career_configuration_form_error").html("<%= escape_javascript(error_message) %>");
+<% end %>
