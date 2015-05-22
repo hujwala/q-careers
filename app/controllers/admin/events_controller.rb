@@ -23,7 +23,7 @@ class Admin::EventsController < Poodle::AdminController
   end
 
   def permitted_params
-    params[:event].permit(:name, :slug, :date, :venue ,:description, :start_time, :end_time, :map_link, :contact_person, :contact_number)
+    params[:event].permit(:name, :slug, :status, :date, :venue ,:description, :start_time, :end_time, :map_link, :contact_person, :contact_number)
   end
 
   def set_navs

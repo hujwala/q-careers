@@ -1,7 +1,7 @@
 class Public::WelcomeController < Public::BaseController
 
   def home
-    @event = Event.upcoming_events.first
+    @event = QcareerConfiguration.homepage_event
     @event = Event.find_by_slug("qwinix-careers") unless @event
     @career_interest = CareerInterest.new
     @fresher = Fresher.new

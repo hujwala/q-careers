@@ -1,0 +1,8 @@
+
+<div class="panel panel-default media p-5">
+  <div class="media-body">
+    <%= theme_item_title(configuration.name, main_app.admin_configuration_path(configuration)) %>
+    <%= theme_item_sub_title(configuration.value) if configuration.value %>
+  </div>
+</div>
+

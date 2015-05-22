@@ -1,0 +1,8 @@
+<% @configurations.each do |conf| %>
+  <div id="div_configuration_<%= conf.id %>">
+    <%= render :partial=>"item", :locals=>{:configuration=>conf} %>
+  </div>
+<% end %>
+<%= theme_panel_message(I18n.translate("forms.no_results")) if @configurations.blank? %>
+
+<%= theme_paginate(@configurations) %>

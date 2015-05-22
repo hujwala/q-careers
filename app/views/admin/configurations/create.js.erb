@@ -1,0 +1,17 @@
+<% if @configuration.errors.blank? %>
+	// Fill the right box with first event details
+	$('#div_configuration_details').html("<%= escape_javascript(render(:partial=>'show')) %>");
+
+	// Add the newly created item to the list
+  $("#div_configuration_index").prepend("<div id=\"div_configuration_<%= @configuration.id %>\"><%= escape_javascript(render(:partial => 'item', :locals => { :configuration => @configuration })) %></div>")
+  $(".panel-message").hide();
+<% else %>
+  $('#div_configuration_details').html("<%= escape_javascript(render(:partial=>'form')) %>");
+
+  // Populate Server Side Errors
+  <%
+    text = "You have few errors. They have been highlighted."
+    error_message = content_tag(:div, text, class: "alert alert-danger")
+  %>
+  $("#configuration_form_error").html("<%= escape_javascript(error_message) %>");
+<% end %>

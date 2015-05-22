@@ -1,4 +1,4 @@
-class Admin::QcareerConfigurationsController < Poodle::AdminController
+class Admin::ConfigurationsController < Poodle::AdminController
 
   before_filter :require_admin
 
@@ -14,20 +14,32 @@ class Admin::QcareerConfigurationsController < Poodle::AdminController
     end
 
     @per_page = params[:per_page] || "20"
-    @qcareer_configurations = relation.order("created_at desc").page(@current_page).per(@per_page)
+    @configurations = relation.order("created_at desc").page(@current_page).per(@per_page)
 
     ## Initializing the @event object so that we can render the show partial
-    @qcareer_configuration = @qcareer_configurations.first unless @qcareer_configuration
+    @configuration = @configurations.first unless @configuration
 
     return true
   end
 
   def default_item_name
-    "qcareer_configuration"
+    "configuration"
+  end
+
+  def default_collection_name
+    "configurations"
+  end
+
+  def default_class
+    QcareerConfiguration
+  end
+
+  def resource_url(obj)
+    admin_configuration_url(obj)
   end
 
   def permitted_params
-    params[:configuration].permit(:name, :value)
+    params[:qcareer_configuration].permit(:name, :value)
   end
 
   def set_navs

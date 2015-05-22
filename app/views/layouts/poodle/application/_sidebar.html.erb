@@ -29,7 +29,7 @@
     <% end %>
 
     <% configurations_link = content_tag :li, class: nav_class("admin/configurations") do %>
-      <%= link_to raw("<i class=\"fa fa-globe\"></i> Configurations"), main_app.admin_qcareer_configurations_path %>
+      <%= link_to raw("<i class=\"fa fa-globe\"></i> Configurations"), main_app.admin_configurations_path %>
     <% end %>
 
     <% case @current_user.q_careers_role %>

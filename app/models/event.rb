@@ -49,5 +49,17 @@ class Event < ActiveRecord::Base
     status.titleize
   end
 
+  def over?
+    status == "over"
+  end
+
+  def scheduled?
+    status == "scheduled"
+  end
+
+  def planning?
+    status == "planning"
+  end
+
 
 end

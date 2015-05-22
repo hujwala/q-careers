@@ -1,0 +1,18 @@
+<%= flash_message if request.xhr? -%>
+
+<div class="panel panel-default">
+  <div class="panel-body" style="height:auto;">
+    <div class="ml-10">
+      <%= theme_panel_heading(@configuration.name) %>
+      <%= theme_panel_description(@configuration.value) %>
+    </div>
+
+    <%= theme_edit_button(main_app.edit_admin_configuration_path(@configuration)) %>
+    <%= theme_delete_button(main_app.admin_configuration_path(@configuration)) %>
+  </div>
+</div>
+
+<%= theme_more_widget(@configuration,
+          heading: "Technical Details",
+          data_columns: [:id, :created_at, :updated_at],
+          super_admin: true) %>
