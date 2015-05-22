@@ -19,11 +19,11 @@
         <%= theme_form_field(@event, :date, html_options: {"data-provide".to_sym => "datepicker", value: value}) %>
 
         <%= theme_form_field(@event, :venue) %>
-        <%= theme_form_field(@event, :start_time) %>
-        <%= theme_form_field(@event, :end_time) %>
-        <%= theme_form_field(@event, :map_link) %>
-        <%= theme_form_field(@event, :contact_person) %>
-        <%= theme_form_field(@event, :contact_number) %>
+        <%= theme_form_field(@event, :start_time, required: false) %>
+        <%= theme_form_field(@event, :end_time, required: false) %>
+        <%= theme_form_field(@event, :map_link, required: false) %>
+        <%= theme_form_field(@event, :contact_person, required: false) %>
+        <%= theme_form_field(@event, :contact_number, required: false) %>
 
         <%# Description (string)  %>
         <%= theme_form_field(@event, :description, required: false, html_options: {type: 'textarea'}) %>

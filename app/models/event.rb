@@ -10,6 +10,7 @@ class Event < ActiveRecord::Base
   validate_string :name, mandatory: true, format: /.*/i
   validate_string :slug, mandatory: true, format: /.*/i
   validates :date, presence: true
+  validates :status, presence: true, inclusion: %w(planning scheduled over)
   validate_string :venue, mandatory: true, format: /\A[a-zA-Z1-9\,\.\-\ \(\)\.+]*\z/i
   validate_string :description, max_length: 2056, format: /.*/i
 
@@ -43,5 +44,10 @@ class Event < ActiveRecord::Base
   def referrals
     career_interests.where("source='employee_referral'")
   end
+
+  def display_status
+    status.titleize
+  end
+
 
 end

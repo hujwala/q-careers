@@ -1,3 +1,9 @@
+<%
+  status_color_hsh = {planning: "info", scheduled: "success", over: "default"}
+  status_color_hsh.default = "info"
+  status_color = status_color_hsh[event.status.to_sym]
+%>
+
 <% event_class = event.date >= Date.today ? "upcoming" : "" %>
 <% event_class = "qwinix-careers" if event.slug == 'qwinix-careers' %>
 <div class="panel panel-default media p-5 <%= event_class %>">
@@ -13,6 +19,9 @@
   <div class="media-body">
     <%= theme_item_title(event.name, main_app.admin_event_path(event)) %>
     <%= theme_item_sub_title(stringify_date(event.date)) if event.date %>
+    <span class="mr-10 mt-5 label label-<%= status_color %>">
+      <%= event.display_status %>
+    </span>
     <%#= theme_item_description(event.venue) %>
     <%= clear_tag(10) %>
     <%= theme_item_description(event.description, 80) %>
