@@ -1,0 +1,44 @@
+<%= form_for([main_app, :admin, @candidate], :html => {:id=>"form_candidate", :class=>"mb-0 form-horizontal", :role => "form", :method => (@candidate.new_record? ? :post : :put), :remote=>true}) do |f| %>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <%= params[:action].titleize %> Event
+    </div>
+    <div class="panel-body" style="height:auto;">
+
+      <div id="candidate_form_error">
+        <%= @candidate.errors[:base].to_sentence %>
+      </div>
+
+      <div class="form-inputs mb-30 mt-30">
+
+        <%= theme_form_field(@candidate, :name) %>
+        <%= theme_form_field(@candidate, :slug) %>
+
+        <% value = @candidate.date ? @candidate.date.strftime("%d/%m/%Y") : "" %>
+        <%= theme_form_field(@candidate, :date, html_options: {"data-provide".to_sym => "datepicker", value: value}) %>
+
+        <%= theme_form_field(@candidate, :venue) %>
+        <%= theme_form_field(@candidate, :start_time, required: false) %>
+        <%= theme_form_field(@candidate, :end_time, required: false) %>
+        <%= theme_form_field(@candidate, :map_link, required: false) %>
+        <%= theme_form_field(@candidate, :contact_person, required: false) %>
+        <%= theme_form_field(@candidate, :contact_number, required: false) %>
+
+        <%# Description (string)  %>
+        <%= theme_form_field(@candidate, :description, required: false, html_options: {type: 'textarea'}) %>
+
+      </div>
+
+    </div>
+
+    <div class="panel-footer clearfix">
+      <div class="pull-right">
+        <% show_url = @candidate.new_record? ? main_app.admin_candidates_path : main_app.admin_candidate_path(@candidate) %>
+        <%= link_to "Cancel", show_url, class: "btn btn-default", remote: true %>
+        <%= theme_form_button(@candidate) %>
+      </div>
+    </div>
+  </div>
+<% end %>
+

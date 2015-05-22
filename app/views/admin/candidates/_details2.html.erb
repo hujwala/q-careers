@@ -1,0 +1,21 @@
+<%= flash_message if request.xhr? -%>
+
+<%= theme_heading("Candidate Details") %>
+
+<table class="table table-condensed table-hover table-striped">
+  <tbody>
+
+    <% [:current_city, :current_state, :native_city, :native_state, :current_city, :current_state, :year_of_passing, :experience_in_years].each do |attribute| %>
+    <tr class="text-color-gray">
+      <td class="bold"><%= attribute.to_s.titleize %></td>
+      <td><%= @candidate.send(attribute) %></td>
+    </tr>
+    <% end %>
+
+  </tbody>
+</table>
+
+
+
+
+

@@ -1,0 +1,18 @@
+<%= theme_panel_heading(@candidate.name) %>
+<%= theme_panel_sub_heading(@candidate.email, "#") %>
+<div class="cl-5"></div>
+<%= theme_panel_sub_heading(@candidate.phone, "#") %>
+<%= theme_panel_description(@candidate.skills, "fs-14 mt-10 text-color-gray") %>
+
+<%= clear_tag(20) %>
+<%= theme_heading("Events (#{@candidate.career_interests.count})") %>
+
+<% @candidate.career_interests.each do |ci| %>
+  <%= clear_tag(20) %>
+  <%= render :partial=>"career_interest", locals: {career_interest: ci} %>
+<% end %>
+
+
+
+
+

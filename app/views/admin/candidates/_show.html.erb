@@ -1,0 +1,31 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+
+  	<div class="row" style="height:300px">
+			<div class="col-sm-6" style="height: 100%;border-right: 1px solid #f0f0f0">
+				<%= render :partial=>"details1" %>
+			</div>
+
+			<div class="col-sm-6">
+				<%= render :partial=>"details2" %>
+			</div>
+
+			<div class="col-sm-12">
+				<%= link_to raw("<i class='fa fa-close'></i> Close"), "#nowhere", id: "a_close_candidate_details", class: "btn btn-default btn-xs pull-right ml-10" %>
+				<%#= theme_edit_button(main_app.edit_admin_candidate_path(@candidate)) %>
+				<%#= theme_delete_button(main_app.admin_candidate_path(@candidate)) %>	
+			</div>
+			
+		</div>
+
+	</div>
+</div>
+
+<script type="text/javascript">
+	$(function() {
+		$('#a_close_candidate_details').click(function() {
+			$('#div_candidate_details').hide();
+			return false;
+		});        
+  });
+</script>

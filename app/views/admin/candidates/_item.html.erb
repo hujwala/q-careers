@@ -1,0 +1,20 @@
+<% candidate_class = candidate.type == "Experienced" ? "experienced" : "" %>
+
+<div class="panel panel-default media p-5 <%= candidate_class %>">
+  <a class="media-left" href="#">
+    <%#= display_image(candidate, "logo.image.url",
+                        width: "125px",
+                        place_holder: {
+                          width: 125,
+                          height: 90,
+                          text: "<No Image>"}
+                        ) %>
+  </a>
+  <div class="media-body">
+    <%= theme_item_title(candidate.name, main_app.admin_candidate_path(candidate)) %>
+    <%= theme_item_sub_title(candidate.email) %>
+    <%= clear_tag(10) %>
+    <%= theme_item_description(candidate.skills, 80) %>
+  </div>
+</div>
+
