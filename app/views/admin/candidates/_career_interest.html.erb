@@ -1,0 +1,47 @@
+<% item_link = "#" unless defined?(item_link) %>
+<% display_reported = true unless defined?(display_reported) %>
+<%
+  if career_interest.confirmed?
+    confirmed_color = "success"
+    confirmed_label = "Confirmed"
+  else
+    confirmed_color = "danger"
+    confirmed_label = "Not Confirmed"
+  end
+
+  if career_interest.reported?
+    reported_color = "success"
+    reported_label = "Reported"
+  else
+    reported_color = "danger"
+    reported_label = "Not Reported"
+  end
+%>
+
+<div class="panel panel-default p-5">
+  <div class="row">
+    <div class="col-sm-4" style="padding-right: 0px">
+      <div style="background-color:grey;color:white;font-size:20px;padding:5px;">
+        <%= career_interest.application_id %>
+      </div>
+
+      <%= clear_tag(5) %>
+      <span class="mr-10 label label-<%= confirmed_color %>">
+        <%= confirmed_label %>
+      </span>
+
+      <span class="mr-10 label label-<%= reported_color %>">
+        <%= reported_label %>
+      </span>
+
+    </div>
+
+    <div class="col-sm-8" style="padding-right: 0px">
+      <%= theme_item_title(career_interest.event.name, item_link) %>
+      <%= theme_item_sub_title(career_interest.event.date) %>
+      <%= theme_item_sub_title(career_interest.event.status) %>
+      <%= theme_item_sub_title("Referred By: " + career_interest.referrer.name, "text-color-green fs-14" ) if career_interest.referrer %>
+    </div>
+  </div>
+  <%= clear_tag(10) %>
+</div>

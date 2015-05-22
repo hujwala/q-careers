@@ -21,6 +21,13 @@ class Candidate < ActiveRecord::Base
   # File Uploader Method Hook
   mount_uploader :resume, ResumeUploader
 
+  # return an active record relation object with the search query in its where clause
+  # Return the ActiveRecord::Relation object
+  # == Examples
+  #   >>> candidate.search(query)
+  #   => ActiveRecord::Relation object
+  scope :search, lambda {|query| where("LOWER(candidates.name) LIKE LOWER('%#{query}%') OR LOWER(candidates.email) LIKE LOWER('%#{query}%') OR LOWER(candidates.skills) LIKE LOWER('%#{query}%') OR LOWER(candidates.current_city) LIKE LOWER('%#{query}%') OR LOWER(candidates.native_city) LIKE LOWER('%#{query}%') OR LOWER(candidates.phone) LIKE LOWER('%#{query}%')")}
+
   # Instance Methods
   # ----------------
 
@@ -45,30 +52,12 @@ class Candidate < ActiveRecord::Base
     #address_list.join(", ")
   end
 
-  # * Return address which includes city, state & country
-  # == Examples
-  #   >>> candidate.display_current_address
-  #   => "Mysore, Karnataka, India"
   def display_current_address
     display_address(:current)
-    # address_list = []
-    # address_list << current_city unless current_city.blank?
-    # address_list << current_state unless current_state.blank?
-    # address_list << current_country unless current_country.blank?
-    # address_list.join(", ")
   end
 
-  # * Return address which includes city, state & country
-  # == Examples
-  #   >>> candidate.display_native_address
-  #   => "Mysore, Karnataka, India"
   def display_native_address
     display_address(:native)
-    # address_list = []
-    # address_list << native_city unless native_city.blank?
-    # address_list << native_state unless native_state.blank?
-    # address_list << native_country unless native_country.blank?
-    # address_list.join(", ")
   end
 
 end

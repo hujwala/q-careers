@@ -1,0 +1,26 @@
+<%= theme_heading("Manage Candidates") %>
+
+<div class="row mb-10">
+	<div class="col-sm-6">
+		<%#= theme_button('New Candidate', 'plus', main_app.new_admin_candidate_path) %>
+	</div>
+	<div class="col-sm-6">
+		<%= theme_search_form(Event, main_app.admin_candidates_path) %>
+  </div>
+</div>
+
+<% if request.xhr? %>
+	<div class="row"><%= flash_message -%></div>
+<% end %> 
+
+<div id="div_candidate_details">
+	<%= render :partial=>"show" if @candidate %>
+</div>
+
+<div class="row">
+	<div id="div_candidate_index" class="col-sm-12">
+		<%= render :partial=>"index" %>
+	</div>
+</div>
+
+

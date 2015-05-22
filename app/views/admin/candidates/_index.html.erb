@@ -1,0 +1,36 @@
+<div class="panel panel-default">
+	 <div class="panel-body">
+		<table class="table table-condensed table-hover table-striped">
+		  <thead>
+		    <tr>
+		      <th>Sl.</th>
+		      <th>Name</th>
+		      <th>Fresher?</th>
+		      <th>Year of Passing</th>
+		      <th>Experience (Years)</th>
+		      <th>Native City</th>
+		      <th>Native State</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+
+		  	<% @candidates.each_with_index do |candidate, index| %>
+			    <tr class="text-color-gray">
+			      <td><%= index + 1 %></td>
+			      <td class="bold"><%= link_to candidate.name, admin_candidate_path(candidate), remote: true %></td>
+			      <td><%= candidate.type == "Fresher" %></td>
+			      <td><%= candidate.year_of_passing %></td>
+			      <td><%= candidate.experience_in_years %></td>
+			      <td><%= candidate.native_city %></td>
+			      <td><%= candidate.native_state %></td>
+			    </tr>
+		    <% end %>
+
+		  </tbody>
+		</table>
+
+		<%= theme_panel_message(I18n.translate("forms.no_results")) if @candidates.blank? %>
+
+		<%= theme_paginate(@candidates) %>
+	</div>
+</div>

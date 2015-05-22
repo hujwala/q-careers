@@ -16,6 +16,10 @@
       <%= link_to raw("<i class=\"fa fa-globe\"></i> Manage Events"), main_app.admin_events_path %>
     <% end %>
 
+    <% candidates_link = content_tag :li, class: nav_class("admin/candidates") do %>
+      <%= link_to raw("<i class=\"fa fa-globe\"></i> Manage Candidates"), main_app.admin_candidates_path %>
+    <% end %>
+
     <% careern_interests_link = content_tag :li, class: nav_class("recruiter/career_interests") do %>
       <%= link_to raw("<i class=\"fa fa-globe\"></i> Career Interests"), main_app.recruiter_events_path %>
     <% end %>
@@ -34,6 +38,7 @@
       <%= dashboard_link %>
       <%= users_link %>
       <%= events_link %>
+      <%= candidates_link %>
       <%= careern_interests_link %>
       <%= registrations_link %>
       <%= referrals_link %>
