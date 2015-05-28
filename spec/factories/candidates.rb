@@ -6,7 +6,7 @@ FactoryGirl.define do
   factory :candidate do
     name
     email
-    phone "910 121 4242"
+    phone "9101214242"
     current_city "Mysore"
     native_city "Davangere"
     skills "C, C++, Java, HTML5, CSS3"
